@@ -3,3 +3,4 @@ CREATE TABLE vai_tro (
     ten_vai_tro VARCHAR(50) UNIQUE NOT NULL,
     mo_ta VARCHAR(255) NOT NULL
 );
+th linh ngu
