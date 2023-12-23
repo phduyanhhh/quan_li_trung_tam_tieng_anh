@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="../css/style-login.css">
 </head>
 <body>
+    <?php
+    session_start();
+    ?>
     <header>
         <div class="home-page">
             <div class="logo">
@@ -38,10 +41,10 @@
     <content>
         <h1 class="text-register">Log in master</h1>
         <div class="login-input">
-            <form action="" method="post">
+            <form action="" method="POST">
                 <p class="panel-title">Login Master</p> <br>
-                <b class="input-content text-input-content">Username*</b> <br>
-                <input type="text" name="user-name" class="input-content input"><br><br>
+                <b class="input-content text-input-content"ư>Username*</b> <br>
+                <input type="text" name="username" class="input-content input"><br><br>
                 <b class="input-content text-input-content">Password*</b> <br>
                 <input type="password" name="password" class="input-content input">
                 <br><br>
@@ -114,5 +117,30 @@
             </div>
         </div>
     </footer>
+    <?php
+    require 'connect.php';
+        if(isset($_POST['username'])){
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $sqlSelect = "SELECT * FROM tai_khoan WHERE ten_dang_nhap='$username'";
+            $resultSqlSelect = $conn->query($sqlSelect);
+            if($resultSqlSelect->num_rows>0){
+                $row = $resultSqlSelect->fetch_assoc();
+                if($row['mat_khau']==$password){
+                    if($row['ma_vai_tro']==1){
+                        $sqlAdmin = "SELECT * FROM tai_khoan INNER JOIN admin ON tai_khoan.ma_tai_khoan = admin.ma_tai_khoan WHERE ten_dang_nhap='$username'";
+                        $resultSqlAdmin = $conn->query($sqlAdmin);
+                        $rowSqlAdmin = $resultSqlAdmin->fetch_assoc();
+                        $_SESSION['ten'] = $rowSqlAdmin['ten'];
+                        header("Location: homeMaster.php");
+                    }
+                } else {
+                    echo "Sai mật";
+                }
+            }
+        } else {
+            echo "chưa isset";
+        }
+    ?>
 </body>
 </html>

@@ -11,14 +11,8 @@
 <body>
     <?php
         session_start();
-        if(isset($_SESSION['user_name'])){
-            require 'connDatabase.php';
-            $user = $_SESSION['user_name'];
-            $sql = "SELECT * FROM teachers t JOIN position p ON t.position = p.id_position WHERE t.user_name = '$user'";
-            $resurlSql = $conn->query($sql);
-            if($resurlSql->num_rows>0){
-                $row = $resurlSql->fetch_assoc();
-                $position = $row['id_position'];
+        if(isset($_SESSION['ten'])){
+            echo "Hello";
     ?>
             <header>
                 <div class="home-page">
@@ -302,21 +296,5 @@
                     </div>
                 </div>
             </footer>
-    <?php    
-            } else {
-                echo "Fail";
-            }
-        } else{
-            echo "fail";
-        }
-    ?>
-    <?php
-        if(isset($_POST['name_new_class'])){
-            $nameNewClass = $_POST['name_new_class'];
-            $idCourseAdd = $_POST['name_course_add'];
-            $sqlAddNewCLass = "INSERT INTO class(id_course, name_class) VALUE ('$idCourseAdd', '$nameNewClass')";
-            $resurlAddNewClass = $conn->query($sqlAddNewCLass);
-        }
-    ?>
 </body>
 </html>
