@@ -15,7 +15,14 @@
                 $_SESSION['ten'] = $rowSqlAdmin['ten'];
                 $_SESSION['vai_tro'] = $rowSqlAdmin['ma_vai_tro'];
                 header("location: homeMaster.php");
-            } elseif($row['ma_vai_tro']==2)
+            } elseif($row['ma_vai_tro']==2){
+                $sqlTeacher = "SELECT * FROM tai_khoan INNER JOIN giao_vien ON tai_khoan.ma_tai_khoan = giao_vien.ma_tai_khoan WHERE ten_dang_nhap='$username'";
+                $resultSqlTeacher = $conn->query($sqlTeacher);
+                $rowSqlTeacher = $resultSqlTeacher->fetch_assoc();
+                $_SESSION['ten'] = $rowSqlTeacher['ten'];
+                $_SESSION['vai_tro'] = $rowSqlTeacher['ma_vai_tro'];
+                header("location: homeMaster.php");
+            }
         } else {
             echo "Sai mật";
         }

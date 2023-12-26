@@ -15,7 +15,8 @@
             $user = $_SESSION['ten'];
             $role = $_SESSION['vai_tro'];
             // role = 1 là ADMIN
-            if($role==1)
+            echo $user;
+            echo $role;
         }
     ?>
      
