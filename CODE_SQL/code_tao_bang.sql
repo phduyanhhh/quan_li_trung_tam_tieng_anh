@@ -53,6 +53,9 @@ CREATE TABLE lop (
     si_so_toi_da INT NOT NULL,
     ngay_bat_dau DATE NOT NULL,
     ngay_ket_thuc DATE NUll,
+    thoi_khoa_bieu VARCHAR (15),
+    gio_bat_dau TIME NOT NULL,
+    thoi_luong_hoc INT NOT NULL,
     FOREIGN KEY (ma_giao_vien) REFERENCES giao_vien(ma_giao_vien),
     FOREIGN KEY (ma_khoa_hoc) REFERENCES khoa_hoc(ma_khoa_hoc)
 );

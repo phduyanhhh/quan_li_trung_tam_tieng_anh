@@ -33,7 +33,7 @@
                 echo 'Phân quyền Học Sinh';
             }
         } else {
-            echo "Sai mật khau";
+            echo "Sai mật";
         }
     }
 ?>
