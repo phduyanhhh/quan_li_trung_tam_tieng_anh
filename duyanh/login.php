@@ -13,8 +13,9 @@
                 $resultSqlAdmin = $conn->query($sqlAdmin);
                 $rowSqlAdmin = $resultSqlAdmin->fetch_assoc();
                 $_SESSION['ten'] = $rowSqlAdmin['ten'];
+                $_SESSION['vai_tro'] = $rowSqlAdmin['ma_vai_tro'];
                 header("location: homeMaster.php");
-            }
+            } elseif($row['ma_vai_tro']==2)
         } else {
             echo "Sai mật";
         }
