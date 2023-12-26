@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require 'connect.php';
+    require 'duyanh/connect.php';
     $username = $_POST['username'];
     $password = $_POST['password'];
     $sqlSelect = "SELECT * FROM tai_khoan WHERE ten_dang_nhap='$username'";
