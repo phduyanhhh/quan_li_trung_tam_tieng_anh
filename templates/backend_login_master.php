@@ -21,7 +21,14 @@
                 $rowSqlTeacher = $resultSqlTeacher->fetch_assoc();
                 $_SESSION['ten'] = $rowSqlTeacher['ten'];
                 $_SESSION['vai_tro'] = $rowSqlTeacher['ma_vai_tro'];
-                header("location: homeMaster.php");
+                header("location: VĂN LINH.....");
+            } elseif($row['ma_vai_tro']==3){
+                $sqlTeacher = "SELECT * FROM tai_khoan INNER JOIN giao_vien ON tai_khoan.ma_tai_khoan = giao_vien.ma_tai_khoan WHERE ten_dang_nhap='$username'";
+                $resultSqlTeacher = $conn->query($sqlTeacher);
+                $rowSqlTeacher = $resultSqlTeacher->fetch_assoc();
+                $_SESSION['ten'] = $rowSqlTeacher['ten'];
+                $_SESSION['vai_tro'] = $rowSqlTeacher['ma_vai_tro'];
+                header("location: VĂN LINH.....");  
             }
         } else {
             echo "Sai mật";
