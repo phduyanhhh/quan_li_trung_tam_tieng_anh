@@ -59,20 +59,6 @@ CREATE TABLE lop (
     FOREIGN KEY (ma_giao_vien) REFERENCES giao_vien(ma_giao_vien),
     FOREIGN KEY (ma_khoa_hoc) REFERENCES khoa_hoc(ma_khoa_hoc)
 );
-CREATE TABLE lich_hoc (
-    ma_lich_hoc INT PRIMARY KEY AUTO_INCREMENT,
-    ma_lop INT,
-    thoi_luong_hoc FLOAT NOT NULL,
-    gio_bat_dau TIME NOT NULL,
-    thu_2 BOOLEAN DEFAULT 0,
-    thu_3 BOOLEAN DEFAULT 0,
-    thu_4 BOOLEAN DEFAULT 0,
-    thu_5 BOOLEAN DEFAULT 0,
-    thu_6 BOOLEAN DEFAULT 0,
-    thu_7 BOOLEAN DEFAULT 0,
-    chu_nhat BOOLEAN DEFAULT 0,
-    FOREIGN KEY (ma_lop) REFERENCES lop(ma_lop)
-);
 CREATE TABLE diem_cua_lop (
     ma_lop INT,
     ma_hoc_sinh INT,
