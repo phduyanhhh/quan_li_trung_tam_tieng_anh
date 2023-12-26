@@ -9,5 +9,4 @@
     if (!$conn) {
         die("Connection failed: " . $con->content_error);
     }
-   
 ?>
