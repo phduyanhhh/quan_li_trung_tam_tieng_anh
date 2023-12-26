@@ -11,8 +11,12 @@
 <body>
     <?php
         session_start();
-        if(isset($_SESSION['ten'])){
-            echo "Hello";
+        if(isset($_SESSION['ten']) AND isset($_SESSION['vai_tro'])){
+            $user = $_SESSION['ten'];
+            $role = $_SESSION['vai_tro'];
+            // role = 1 là ADMIN
+            echo $user;
+            echo $role;
         }
     ?>
      
