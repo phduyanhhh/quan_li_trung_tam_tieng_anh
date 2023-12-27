@@ -1,0 +1,65 @@
+#text {
+    color: #fff;
+}
+.img-logo {
+    width: 120px;
+    border-right: 1px solid white;
+    padding-right: 15px;
+}
+.nav-menu {
+    background-color: rgb(2,45,96);
+    padding: 10px;
+}
+#img-admin {
+    width: 50px;
+    margin-bottom: 10px;
+    border-radius: 50px;
+}
+.drop-menu {
+    margin-right: 1000px;
+}
+#avatar {
+    width: 100%;
+    background-color: aqua;
+}
+#user-avt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.name {
+    color: #fff;
+    padding-left: 20px;
+    padding-right: 15px;
+
+}
+#box-avt {
+    margin-right: 30px;
+}
+.navbar-toggler {
+    border: 1px solid #fff;
+}
+.navbar-toggler-icon-custom {
+    color: #fff;
+}
+#nav-menu-top {
+    padding-top: 0;
+}
+/* ---------------------- */
+content {
+    display: flex;
+    flex-direction: row;
+}
+.menu-left {
+    border:1px solid #0e710c;
+    width: 18%;
+    height: 635px;
+}
+#header-menu-left {
+    padding: 20px;
+}
+.content {
+    border:1px solid #0e710c;
+    width: 80%;
+    margin-left: 15px;
+}

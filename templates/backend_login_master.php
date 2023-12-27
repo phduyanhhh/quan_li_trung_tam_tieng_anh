@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require '../vanlinh_giao_vien/connect.php';
+    require '../DuyAnhAdmin/connect.php';
 
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -15,7 +15,7 @@
                 $rowSqlAdmin = $resultSqlAdmin->fetch_assoc();
                 $_SESSION['ten'] = $rowSqlAdmin['ten'];
                 $_SESSION['vai_tro'] = $rowSqlAdmin['ma_vai_tro'];
-                header("location: ../vanlinh_giao_vien/xem_hoc_sinh.php");
+                header("location: ../DuyAnhAdmin/homeAdmin.php");
             } elseif($row['ma_vai_tro']==2){
                 $sqlTeacher = "SELECT * FROM tai_khoan INNER JOIN giao_vien ON tai_khoan.ma_tai_khoan = giao_vien.ma_tai_khoan WHERE ten_dang_nhap='$username'";
                 $resultSqlTeacher = $conn->query($sqlTeacher);
