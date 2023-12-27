@@ -5,13 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="cssAdmin/style-home-admin.css">
+    <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
+    <script src="js/ajaxStudent.js"></script>
 </head>
 <body>
 <?php
 session_start();
   if(isset($_SESSION['ten'])){
+    require 'connect.php';
+    // số tài khoản
+    $sqlStudent = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 3";
+    $sqlTeacher = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 2";
+    // số tài khoản đang hoạt động
+    $sqlStudentStudying = "SELECT * FROM hoc_sinh";
+    $sqlTeacherTeaching = "SELECT * FROM lop GROUP BY ma_giao_vien";
+    $resultStudent = $conn->query($sqlStudent);
+    $resultTeacher = $conn->query($sqlTeacher);
+    $resultStudentStudying = $conn->query($sqlStudentStudying);
+    $resultTeacherTeaching = $conn->query($sqlTeacherTeaching);
+    // Số khóa học
+    $sqlCourse = "SELECT * FROM khoa_hoc";
+    $resultCourse = $conn->query($sqlCourse);
+    // Số lớp học
+    $sqlClass = "SELECT * FROM lop";
+    $resultClass = $conn->query($sqlClass);
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-menu-top">
     <div class="container-fluid nav-menu">
@@ -104,24 +122,27 @@ session_start();
               </div>
         </div>
     </div>
-    <div class='item content'>
+    <div class='item content' id='content'>
         <h2>Infomation</h2>
         <div class='box-information'>
             <div class='item-box-information'>
-                <h3>Student</h3>
-                <div>Số học sinh của trung tâm</div>
+                <h3>Students</h3>
+                <div>Students account number: <?php echo $resultStudent->num_rows; ?></div>
+                <div>Number of Students registered for the course: <?php echo $resultStudentStudying->num_rows; ?></div>
+                <div><button type="button" class="btn btn-light" id="details">DETAILS</button></div>
             </div>
             <div class='item-box-information'>
-                <h3>Teacher</h3>
-                <div>Số học sinh của trung tâm</div>
+                <h3>Teachers</h3>
+                <div>Teachers account number: <?php echo $resultTeacher->num_rows; ?></div>
+                <div>Number of Teachers registered for the course: <?php echo $resultTeacherTeaching->num_rows; ?></div>
             </div>
             <div class='item-box-information'>
                 <h3>Course</h3>
-                <div>Số học sinh của trung tâm</div>
+                <div>Course number: <?php echo $resultCourse->num_rows; ?></div>
             </div>
             <div class='item-box-information'>
                 <h3>Class</h3>
-                <div>Số học sinh</div>
+                <div>Class number: <?php echo $resultClass->num_rows; ?></div>
             </div>
         </div>
     </div>
