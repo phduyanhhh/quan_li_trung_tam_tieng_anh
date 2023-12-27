@@ -81,3 +81,10 @@ content {
     justify-content: center;
     width: 98%;
 }
+/* --------student--------- */
+.header-content-info-student {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    background-color: #0e710c;
+}
