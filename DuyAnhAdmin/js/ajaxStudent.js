@@ -1,11 +1,13 @@
-
-    // Bắt sự kiện khi người dùng nhấn nút
-    $('#details').click(function(){
-        $.ajax({
-            url: '../getDataStudent.php', // Đường dẫn đến tệp xử lý PHP
-            method: 'GET', // Hoặc 'POST' tùy vào cách bạn muốn gửi dữ liệu
-            success: function(response){
-                $('#content').html(response); // Hiển thị dữ liệu trả về trong thẻ div có id "content"
-            }
-        });
-    });
+function detail_school() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+            document.querySelector('#content').innerHTML = this.responseText;
+        }
+    };
+    xmlhttp.open("GET", "../getDataStudent.php", true);
+    xmlhttp.send();
+}
+document.addEventListener("DOMContentLoaded", function(){
+    document.querySelector('#details').onclick = detail_school;
+});
