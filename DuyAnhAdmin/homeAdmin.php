@@ -39,17 +39,20 @@ session_start();
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link active" aria-current="page" href="#" id="text">Home</a>
-          <a class="nav-link" href="#" id="text">Teacher system</a>
-          <a class="nav-link" href="#" id="text">Student system</a>
+          <button class="nav-link" id="text">Trang chủ</button>
+          <button class="nav-link" id="text">Quản lí giáo viên</button>
+          <button class="nav-link" id="text">Quản lí học sinh</button>
+          <button class="nav-link" id="text">Quản lí khóa học</button>
+          <button class="nav-link" id="text">Quản lí lớp</button>
         </div>
       </div>
       <div class="dropdown mt-3" id="box-avt">
         <div class="dropdown-toggle" type="button" data-bs-toggle="dropdown" id="user-avt"><img src="../image/admin.png" id="img-admin"><p class="name"><?php echo $_SESSION['ten']; ?></p></div> 
         <ul class="dropdown-menu left drop-menu">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+          <li><a class="dropdown-item" href="#">Sửa thông tin cá nhân</a></li>
+          <hr>
+          <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
         </ul>
       </div>
     </div>
@@ -62,60 +65,60 @@ session_start();
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      Student
+                      Học sinh
                     </button>
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" href=""><b>Add Student</b></a>
-                        <a class="nav-link" href=""><b>Edit Student</b></a>
-                        <a class="nav-link" href=""><b>Delete Student</b></a>
-                        <a class="nav-link" href=""><b>Student List</b></a>
+                        <a class="nav-link" href=""><b>Thêm học sinh</b></a>
+                        <a class="nav-link" href=""><b>Sửa thông tin học sinh</b></a>
+                        <a class="nav-link" href=""><b>Xóa thông tin học sinh</b></a>
+                        <a class="nav-link" href=""><b>Danh sách học sinh</b></a>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Teacher
+                        Giáo viên
                     </button>
                   </h2>
                   <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" href=""><b>Add Teacher</b></a>
-                        <a class="nav-link" href=""><b>Edit Teacher</b></a>
-                        <a class="nav-link" href=""><b>Delete Teacher</b></a>
-                        <a class="nav-link" href=""><b>Teacher List</b></a>
+                        <a class="nav-link" href=""><b>Thêm giáo viên</b></a>
+                        <a class="nav-link" href=""><b>Sửa thông tin giáo viên</b></a>
+                        <a class="nav-link" href=""><b>Xóa thông tin giáo viên</b></a>
+                        <a class="nav-link" href=""><b>Danh sách giáo viên</b></a>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Course
+                        Khóa học
                     </button>
                   </h2>
                   <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" href=""><b>Add Course</b></a>
-                        <a class="nav-link" href=""><b>Edit Course</b></a>
-                        <a class="nav-link" href=""><b>Delete Course</b></a>
-                        <a class="nav-link" href=""><b>Course List</b></a>
+                        <a class="nav-link" href=""><b>Thêm khóa học</b></a>
+                        <a class="nav-link" href=""><b>Sửa khóa học</b></a>
+                        <a class="nav-link" href=""><b>Xóa khóa học</b></a>
+                        <a class="nav-link" href=""><b>Danh sách khóa học</b></a>
                     </div>
                   </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                          Class
+                          Lớp
                       </button>
                     </h2>
                     <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                       <div class="accordion-body">
-                          <a class="nav-link" href=""><b>Add Class</b></a>
-                          <a class="nav-link" href=""><b>Edit Class</b></a>
-                          <a class="nav-link" href=""><b>Delete Class</b></a>
-                          <a class="nav-link" href=""><b>Course Class</b></a>
+                          <a class="nav-link" href=""><b>Thêm lớp</b></a>
+                          <a class="nav-link" href=""><b>Sửa thông tin lớp</b></a>
+                          <a class="nav-link" href=""><b>Xóa lớp</b></a>
+                          <a class="nav-link" href=""><b>Danh sách lớp</b></a>
                       </div>
                     </div>
                   </div>
@@ -126,23 +129,23 @@ session_start();
         <h2>Infomation</h2>
         <div class='box-information'>
             <div class='item-box-information'>
-                <h3>Students</h3>
-                <div>Students account number: <?php echo $resultStudent->num_rows; ?></div>
-                <div>Number of Students registered for the course: <?php echo $resultStudentStudying->num_rows; ?></div>
-                <div><button type="button" class="btn btn-light" id="details">DETAILS</button></div>
+                <h3>Học sinh</h3>
+                <div>Số tài khoản học sinh: <?php echo $resultStudent->num_rows; ?></div>
+                <div>Số tài khoản học sinh đã đăng kí khóa học: <?php echo $resultStudentStudying->num_rows; ?></div>
+                <div><button type="button" class="btn btn-light" id="details">Chi tiết</button></div>
             </div>
             <div class='item-box-information'>
-                <h3>Teachers</h3>
-                <div>Teachers account number: <?php echo $resultTeacher->num_rows; ?></div>
-                <div>Number of Teachers registered for the course: <?php echo $resultTeacherTeaching->num_rows; ?></div>
+                <h3>Giáo viên</h3>
+                <div>Số tài khoản giáo viên: <?php echo $resultTeacher->num_rows; ?></div>
+                <div>Số giáo viên đã có lớp dạy: <?php echo $resultTeacherTeaching->num_rows; ?></div>
             </div>
             <div class='item-box-information'>
-                <h3>Course</h3>
-                <div>Course number: <?php echo $resultCourse->num_rows; ?></div>
+                <h3>Khóa học</h3>
+                <div>Số khóa học: <?php echo $resultCourse->num_rows; ?></div>
             </div>
             <div class='item-box-information'>
-                <h3>Class</h3>
-                <div>Class number: <?php echo $resultClass->num_rows; ?></div>
+                <h3>Lớp</h3>
+                <div>Số lớp: <?php echo $resultClass->num_rows; ?></div>
             </div>
         </div>
     </div>
