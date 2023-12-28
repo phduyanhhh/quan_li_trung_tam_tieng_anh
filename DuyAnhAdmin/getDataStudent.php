@@ -1,3 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+        <script src="js/ajax_score_high.js"></script>
+        <style>
+            content {
+                position: relative;
+            }
+            .chi-tiet-diem {
+                margin: 50px;
+                position: absolute;
+            }
+            .item-box-information {
+                
+            }
+        </style>
+    
+</head>
+<body>
+
+
     <?php
     require "connect.php";
     $sqlStudent = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 3";
@@ -40,7 +65,8 @@
                             ?>
                         </tr>
                     </table>
-                    <button type="button" class="btn btn-info">Chi tiết</button>
+                    <a href="#" id="detail-score-high">Chi tiết</a>
+                    <button type="button" class="btn btn-info" id="detail-score-high">Chi tiết</button>
                     <?php
                 }
             ?>
@@ -68,9 +94,13 @@
                         </tr>
                     </table>
                     <button type="button" class="btn btn-info">Chi tiết</button>
+                    </div>
                     <?php
                 }
             ?>
         </div>
     </div>
+
     <button type="button" class="btn-close" aria-label="Close"></button>
+</body>
+</html>

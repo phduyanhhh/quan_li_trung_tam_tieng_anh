@@ -1,6 +1,7 @@
 function detail_student() {
     // gọi phương thức XMLHttpRequest
     var xmlhttp = new XMLHttpRequest();
+    var n = 5;
     xmlhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
             document.querySelector('#content').innerHTML = this.responseText;

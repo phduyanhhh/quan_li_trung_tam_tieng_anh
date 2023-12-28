@@ -8,6 +8,7 @@
     <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
     <script src="js/ajax_information.js"></script>
+    <script src="js/ajax_score_high.js"></script>
 </head>
 <body>
 <?php
@@ -148,7 +149,10 @@ session_start();
                 <div>Số lớp: <?php echo $resultClass->num_rows; ?></div>
             </div>
         </div>
+        
     </div>
+    <div id="detail-score">gdga</div>
+    <button type="button" class="btn btn-info chi-tiet-diem" id="detail-score-high">Chi tiết</button>
 </content>
     <?php
   }
