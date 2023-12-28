@@ -21,9 +21,10 @@
                 $resultSqlTeacher = $conn->query($sqlTeacher);
                 $rowSqlTeacher = $resultSqlTeacher->fetch_assoc();
                 $_SESSION['ten'] = $rowSqlTeacher['ten'];
+                $_SESSION['ma_giao_vien'] = $rowSqlTeacher['ma_giao_vien'];
                 $_SESSION['vai_tro'] = $rowSqlTeacher['ma_vai_tro'];
                 echo 'Phân quyền Giáo viên';
-                // header("location: VĂN LINH.....");
+                header("location: ../vanlinh_giao_vien/home_teacher.php");
             } elseif($row['ma_vai_tro']==3){
                 $sqlStudent = "SELECT * FROM tai_khoan INNER JOIN hoc_sinh ON tai_khoan.ma_tai_khoan = hoc_sinh.ma_tai_khoan WHERE ten_dang_nhap='$username'";
                 $resultSqlStudent = $conn->query($sqlStudent);
