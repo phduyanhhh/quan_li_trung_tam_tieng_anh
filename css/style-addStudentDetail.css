@@ -1,0 +1,44 @@
+.input-detail-panel {
+    width: 80%;
+    margin: 0 auto;
+    border: 18px solid #EBEFF0;
+}
+.panel-title {
+    background-color: #00953B;
+    margin: 0;
+    padding: 25px;
+    color: white;
+    font-weight: bold;
+}
+.buttom-add {
+    width: 100px;
+    height: 30px;
+    margin-left: 40px;
+    background-color: #00953B;
+    border: 0;
+    color: #EBEFF0;
+    font-size: 15px;
+    border-radius: 8px;
+}
+.buttom-register:hover {
+    background-color: #5DEB4B;
+    color: rgb(11, 73, 149);
+}
+.input-content {
+    margin-left: 40px;
+}
+.text-input-content {
+    color: rgb(3,46,97);
+}
+.input {
+    width: 650px;
+    height: 55px;
+    border: 1px solid c4c4c4;
+    padding: 6px 12px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+.notification-content {
+    margin-left: 130px;
+}
