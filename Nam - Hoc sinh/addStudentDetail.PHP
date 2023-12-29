@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm thông tin học sinh</title>
+    <link rel="stylesheet" href="../css/style-addStudentDetail.css">
+</head>
+<body>
+<div class="input-detail-panel">
+<p class="panel-title">Thêm thông tin học sinh</p> <br>
+    <form method="get" action="">
+        <p for="ten" class="input-content ">Tên </p>
+        <input type="text" id="ten" name="ten" required class="input-content input"><br><br>
+        
+        <p for="ho" class="input-content ">Họ</p>
+        <input type="text" id="ho" name="ho" required class="input-content input"><br><br>
+        
+        <p for="email" class="input-content ">Email</p>
+        <input type="text" id="email" name="email" required class="input-content input"><br><br>
+
+        <p for="so_dien_thoai" class="input-content ">Số Điện thoại</p>
+        <input type="text" id="so_dien_thoai" name="so_dien_thoai" required class="input-content input"><br><br>
+        
+        <input type="submit" name="submit" value="Thêm" class="buttom-add">
+    </form>
+</div>
+    <?php
+        if (isset($_GET['submit'])) {
+            $ten = $_GET['ten'];
+            $ho = $_GET['ho'];
+            $email = $_GET['email'];
+            $so_dien_thoai = $_GET['so_dien_thoai'];
+
+            require 'connect.php';
+
+            $sql = "INSERT INTO hoc_sinh (ten, ho, email, so_dien_thoai) VALUES ('$ten', '$ho', '$email', $so_dien_thoai)";
+
+            if ($conn->query($sql) === True)
+            {
+                echo '<p class="notification-content">Đã thêm thông tin thành công !</p>';
+            }
+            else
+            {
+                echo '<p class="notification-content">đã xảy ra lỗi</p>';
+            }
+        }
+    ?>
+</body>
+</html>
