@@ -1,3 +1,4 @@
+var previousContent = '';
 function detail_score_high(){
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
@@ -8,6 +9,9 @@ function detail_score_high(){
     xmlhttp.open("GET", "getScoreHigh.php", true);
     xmlhttp.send();
 }
+$("#button-close").click(function(){
+    $("detail-score").hide();
+});
 document.addEventListener("DOMContentLoaded", function(){
     document.querySelector('#detail-score-high').onclick = detail_score_high;
 });

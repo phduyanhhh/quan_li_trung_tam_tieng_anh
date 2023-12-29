@@ -91,8 +91,31 @@ content {
 .header-box-info-student {
     text-align: center;
 }
-.detail-score {
-    position: absolute;
-    right: 0;
+/* #detail-score {
     background-color: #0e710c;
+    overflow: 300px;
+    height: 350px;
+} */
+/* --------------- */
+
+.info-score-high {
+    padding: 30px;
+    background-color: rgb(186, 176, 176,0.8);
+    box-shadow: 10px 10px 10px gray;
+    position: absolute;
+    width: 80%;
+    height: 635px;
+    margin-left: 15px;
+}
+.scrollable { /* Chiều cao của phần tử cuộn */
+    overflow-y: scroll; /* Kích hoạt thanh cuộn khi nội dung vượt quá chiều cao */
+    border: 1px solid #ccc;
+    margin: auto;
+    margin-left: auto;
+    width: 600px;
+    height: 500px;
+}
+.info-score-high-header {
+    margin: auto;
+    text-align: center;
 }

@@ -1,3 +1,4 @@
+<div id="web-detail-student">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
-    <script src="js/ajax_information.js"></script>
     <script src="js/ajax_score_high.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
 </head>
 <body>
 <?php
@@ -40,11 +42,11 @@ session_start();
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <button class="nav-link" id="text">Trang chủ</button>
-          <button class="nav-link" id="text">Quản lí giáo viên</button>
-          <button class="nav-link" id="text">Quản lí học sinh</button>
-          <button class="nav-link" id="text">Quản lí khóa học</button>
-          <button class="nav-link" id="text">Quản lí lớp</button>
+          <a class="nav-link" id="text" href="homeAdmin.php">Trang chủ</a>
+          <a class="nav-link" id="text" href="">Quản lí giáo viên</a>
+          <a class="nav-link" id="text" href="">Quản lí học sinh</a>
+          <a class="nav-link" id="text" href="">Quản lí khóa học</a>
+          <a class="nav-link" id="text" href="">Quản lí lớp</a>
         </div>
       </div>
       <div class="dropdown mt-3" id="box-avt">
@@ -162,7 +164,7 @@ session_start();
                                 <th>Học sinh</th>
                                 <th>Điểm</th>
                                 <?php
-                                for($i=1;$i<=10;$i++){
+                                for($i=1;$i<=8;$i++){
                                     $rowHighScore = $resultSqlHighScore->fetch_assoc();
                                     echo "<tr>";
                                         echo "<td>" . $i . "</td>";
@@ -189,7 +191,7 @@ session_start();
                                 <th>Học sinh</th>
                                 <th>Điểm</th>
                                 <?php
-                                for($i=1;$i<=10;$i++){
+                                for($i=1;$i<=8;$i++){
                                     $rowLowScore = $resultSqlLowScore->fetch_assoc();
                                     echo "<tr>";
                                         echo "<td>" . $i . "</td>";
@@ -215,3 +217,4 @@ session_start();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
+</div>
