@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
+    <script src="js/ajax_information.js"></script>
     <script src="js/ajax_score_high.js"></script>
 </head>
 <body>
@@ -125,27 +126,84 @@ session_start();
               </div>
         </div>
     </div>
+    <div class="detail-score">
+        <div id="detail-score"></div>
+    </div>
+    
     <div class='item content' id='content'>
-        <h2>Infomation</h2>
-        <div class='box-information'>
-            <div class='item-box-information'>
-                <h3>Học sinh</h3>
+        <?php
+        require "connect.php";
+        $sqlStudent = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 3";
+        $sqlStudentStudying = "SELECT * FROM hoc_sinh";
+        $resultStudent = $conn->query($sqlStudent);
+        $resultStudentStudying = $conn->query($sqlStudentStudying);
+        // ĐIỂM ĐẦU VÀO CAO, THẤP
+        $sqlHighScore = "SELECT * FROM `hoc_sinh` WHERE diem_dau_vao >= 9 ORDER BY diem_dau_vao DESC";
+        $sqlLowScore = "SELECT * FROM `hoc_sinh` WHERE diem_dau_vao <= 4 ORDER BY diem_dau_vao ASC";
+        $resultSqlHighScore = $conn->query($sqlHighScore);
+        $resultSqlLowScore = $conn->query($sqlLowScore);
+        ?>
+        <div class="header-content-info-student">
+            <h2>Thông tin học sinh</h2>
+            <div>
                 <div>Số tài khoản học sinh: <?php echo $resultStudent->num_rows; ?></div>
                 <div>Số tài khoản học sinh đã đăng kí khóa học: <?php echo $resultStudentStudying->num_rows; ?></div>
-                <div><a href="detailStudent.php"><button type="button" class="btn btn-light" id="details">Chi tiết</button></a></div>
+            </div>
+        </div>
+        <div class='box-information'>
+            <div class='item-box-information'>
+                <h3 class="header-box-info-student">Các học sinh có điểm đầu vào cao</h3>
+                <?php
+                    if($resultSqlHighScore->num_rows>0){
+                        ?>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>#</th>
+                                <th>Học sinh</th>
+                                <th>Điểm</th>
+                                <?php
+                                for($i=1;$i<=10;$i++){
+                                    $rowHighScore = $resultSqlHighScore->fetch_assoc();
+                                    echo "<tr>";
+                                        echo "<td>" . $i . "</td>";
+                                        echo "<td>" . $rowHighScore['ho'] . " " .$rowHighScore['ten'] . "</td>";
+                                        echo "<td>" . $rowHighScore['diem_dau_vao'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </tr>
+                        </table>
+                        <button type="button" class="btn btn-info" id="detail-score-high">Chi tiết</button>
+                        <?php
+                    }
+                ?>
             </div>
             <div class='item-box-information'>
-                <h3>Giáo viên</h3>
-                <div>Số tài khoản giáo viên: <?php echo $resultTeacher->num_rows; ?></div>
-                <div>Số giáo viên đã có lớp dạy: <?php echo $resultTeacherTeaching->num_rows; ?></div>
-            </div>
-            <div class='item-box-information'>
-                <h3>Khóa học</h3>
-                <div>Số khóa học: <?php echo $resultCourse->num_rows; ?></div>
-            </div>
-            <div class='item-box-information'>
-                <h3>Lớp</h3>
-                <div>Số lớp: <?php echo $resultClass->num_rows; ?></div>
+                <h3 class="header-box-info-student">Các học sinh có điểm đầu vào thấp</h3>
+                <?php
+                    if($resultSqlLowScore->num_rows>0){
+                        ?>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>#</th>
+                                <th>Học sinh</th>
+                                <th>Điểm</th>
+                                <?php
+                                for($i=1;$i<=10;$i++){
+                                    $rowLowScore = $resultSqlLowScore->fetch_assoc();
+                                    echo "<tr>";
+                                        echo "<td>" . $i . "</td>";
+                                        echo "<td>" . $rowLowScore['ho'] . " " .$rowLowScore['ten'] . "</td>";
+                                        echo "<td>" . $rowLowScore['diem_dau_vao'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </tr>
+                        </table>
+                        </div>
+                        <?php
+                    }
+                ?>
             </div>
         </div>
     </div>

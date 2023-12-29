@@ -49,6 +49,7 @@
 content {
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 .content{
     display: flex;
@@ -89,4 +90,9 @@ content {
 }
 .header-box-info-student {
     text-align: center;
+}
+.detail-score {
+    position: absolute;
+    right: 0;
+    background-color: #0e710c;
 }
