@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xem học sinh</title>
+    <link rel="stylesheet" href="../css/style-showStudentDetail.css">
 </head>
 <body>
+    <div class="detail-panel">
+    <p class="panel-title">Bảng thông tin học sinh</p>
     <?php
         require 'connect.php';
         $sql = "SELECT * FROM hoc_sinh";
         $result = $conn->query($sql);
         if ($result->num_rows > 0){
             echo "<table>"; 
-                echo "<caption><b>Bảng thông tin học sinh</b></caption>";
                 {
-                    $tieuDe = array('ID', 'Tên', 'họ','Email' ,'Số điện thoại','Điểm đầu vào');
+                    $tieuDe = array('ID', 'Tên', 'Họ','Email' ,'Số điện thoại','Điểm đầu vào');
                     echo"<tr id='tieu_de'>";
                     for($i = 0 ; $i < count($tieuDe); $i += 1) {
                         echo "<td>$tieuDe[$i]</td>";
@@ -39,5 +41,6 @@
         }
         $conn->close();
     ?>
+    </div>
 </body>
 </html>

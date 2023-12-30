@@ -61,10 +61,10 @@
         <div class='box-information'>
             <div class='item-box-information'>
                 <form action="" method="post">
-                    <div class="title-box-information"><b>Tên: </b><input class="input-infor" type="text" name="ten" required></div><br>
-                    <div class="title-box-information"><b>Họ:</b> <input class="input-infor" type="text" name="ho" required></div><br>
-                    <div class="title-box-information"><b>Email:</b> <input class="input-infor" type="text" name="email" required></div><br>
-                    <div class="title-box-information"><b>Số điện thoại:</b> <input class="input-infor" type="text" name="so_dien_thoai" required></div><br>
+                    <div class="title-box-information"><b>Tên: </b><input class="input-infor" type="text" name="ten" placeholder="<?php echo $resultSqlSelectTeacher['ten'] ?>" required></div><br>
+                    <div class="title-box-information"><b>Họ:</b> <input class="input-infor" type="text" name="ho" placeholder="<?php echo $resultSqlSelectTeacher['ho'] ?> "required></div><br>
+                    <div class="title-box-information"><b>Email:</b> <input class="input-infor" type="text" name="email" placeholder="<?php echo $resultSqlSelectTeacher['email'] ?>" required></div><br>
+                    <div class="title-box-information"><b>Số điện thoại:</b> <input class="input-infor" type="text" name="so_dien_thoai" placeholder="<?php echo $resultSqlSelectTeacher['so_dien_thoai'] ?>" required></div><br>
                     <button class="button-cap-nhat">Cập nhật</button>
                 </form>
                     <?php
