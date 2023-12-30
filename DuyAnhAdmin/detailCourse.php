@@ -1,3 +1,4 @@
+<div id="web-detail-student">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,31 +8,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
-    <script src="js/ajax_score_high.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="js/ex.js"></script>
+    <script src="js/student_score.js"></script>
+    <style>
+      .item-box-information-course {
+        width: 80%;
+      }
+      .table-course {
+        text-align: center;
+      }
+    </style>
 </head>
 <body>
 <?php
 session_start();
   if(isset($_SESSION['ten'])){
-    require 'connect.php';
-    // số tài khoản
-    $sqlStudent = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 3";
-    $sqlTeacher = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 2";
-    // số tài khoản đang hoạt động
-    $sqlStudentStudying = "SELECT * FROM hoc_sinh";
-    $sqlTeacherTeaching = "SELECT * FROM lop GROUP BY ma_giao_vien";
-    $resultStudent = $conn->query($sqlStudent);
-    $resultTeacher = $conn->query($sqlTeacher);
-    $resultStudentStudying = $conn->query($sqlStudentStudying);
-    $resultTeacherTeaching = $conn->query($sqlTeacherTeaching);
-    // Số khóa học
-    $sqlCourse = "SELECT * FROM khoa_hoc";
-    $resultCourse = $conn->query($sqlCourse);
-    // Số lớp học
-    $sqlClass = "SELECT * FROM lop";
-    $resultClass = $conn->query($sqlClass);
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-menu-top">
     <div class="container-fluid nav-menu">
@@ -72,8 +62,10 @@ session_start();
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" id='remove-student' href="deleteStudent.php"><b>Xóa thông tin học sinh</b></a>
-                        <button class="nav-link" id='list-student'><b>Danh sách học sinh</b></button>
+                        <a class="nav-link" href=""><b>Thêm học sinh</b></a>
+                        <a class="nav-link" href=""><b>Sửa thông tin học sinh</b></a>
+                        <a class="nav-link" href=""><b>Xóa thông tin học sinh</b></a>
+                        <a class="nav-link" href=""><b>Danh sách học sinh</b></a>
                     </div>
                   </div>
                 </div>
@@ -125,27 +117,62 @@ session_start();
               </div>
         </div>
     </div>
+    <div class="detail-score">
+        <div id="detail-score"></div>
+    </div>
     <div class='item content' id='content'>
-        <h2>Infomation</h2>
-        <div class='box-information'>
-            <div class='item-box-information'>
-                <h3>Học sinh</h3>
-                <div>Số tài khoản học sinh: <?php echo $resultStudent->num_rows; ?></div>
-                <div>Số tài khoản học sinh đã đăng kí khóa học: <?php echo $resultStudentStudying->num_rows; ?></div>
-                <div><a href="detailStudent.php"><button type="button" class="btn btn-light" id="details">Chi tiết</button></a></div>
-            </div>
-            <div class='item-box-information'>
-                <h3>Giáo viên</h3>
-                <div>Số tài khoản giáo viên: <?php echo $resultTeacher->num_rows; ?></div>
-                <div>Số giáo viên đã có lớp dạy: <?php echo $resultTeacherTeaching->num_rows; ?></div>
-            </div>
-            <div class='item-box-information'>
-                <h3>Khóa học</h3>
+        <?php
+        require "connect.php";
+        $sqlCourse = "SELECT * FROM khoa_hoc";
+        $resultCourse = $conn->query($sqlCourse);
+        // ---------Số học sinh đăng kí khóa học----------
+
+        ?>
+        <div class="header-content-info-student">
+            <h2>Thông tin khóa học</h2>
+            <div>
                 <div>Số khóa học: <?php echo $resultCourse->num_rows; ?></div>
             </div>
-            <div class='item-box-information'>
-                <h3>Lớp</h3>
-                <div>Số lớp: <?php echo $resultClass->num_rows; ?></div>
+        </div>
+        <div class='box-information'>
+            <div class='item-box-information item-box-information-course'>
+                <h3 class="header-box-info-student">Các khóa học nhiều học sinh đăng kí nhất</h3>
+                <?php
+                    if($resultCourse->num_rows>0){
+                        ?>
+                        <table class="table table-striped table-course">
+                            <tr>
+                                <th>#</th>
+                                <th>Tên khóa học</th>
+                                <th>Học phí</th>
+                                <th>Số buổi</th>
+                                <th>Điều kiện</th>
+                                <th>Số học sinh đã đăng kí</th>
+                            </tr>
+                                <?php
+                                for($i=1;$resultCourse->num_rows>=$i;$i++){
+                                  ?>
+                                  <tr>
+                                  <?php
+                                    $rowCourse = $resultCourse->fetch_assoc();
+                                    $sqlIdCourseStudent = "SELECT * FROM `diem_cua_lop` INNER JOIN lop ON lop.ma_lop = diem_cua_lop.ma_lop INNER JOIN khoa_hoc ON khoa_hoc.ma_khoa_hoc=lop.ma_khoa_hoc WHERE khoa_hoc.ma_khoa_hoc='$i'";
+                                    $resultIdCourseStudent = $conn->query($sqlIdCourseStudent);
+  
+                                  ?>
+                                  <td><?php echo $i ?></td>
+                                    <td><?php echo $rowCourse['ten_khoa_hoc'] ?></td>
+                                    <td><?php echo $rowCourse['hoc_phi'] ?></td>
+                                    <td><?php echo $rowCourse['so_tiet'] ?></td>
+                                    <td><?php echo $rowCourse['dieu_kien'] ?></td>
+                                    <td><?php echo $resultIdCourseStudent->num_rows ?></td>
+                                  </tr>
+                                <?php
+                                }
+                                ?>
+                        </table>
+                        <?php
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -157,3 +184,4 @@ session_start();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
+</div>

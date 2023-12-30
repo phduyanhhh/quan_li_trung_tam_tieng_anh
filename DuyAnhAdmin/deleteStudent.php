@@ -10,6 +10,22 @@
     <script src="js/ajax_score_high.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/ex.js"></script>
+    <style>
+      .table-delete-student {
+    text-align: center;
+}
+.table-delete-student tr td th {
+    text-align: center;
+}
+.delete-student {
+  overflow-y: scroll;
+  height: 500px;
+  width: 100%;
+}
+#search-student {
+  width: 50%;
+}
+    </style>
 </head>
 <body>
 <?php
@@ -72,7 +88,8 @@ session_start();
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" id='remove-student' href="deleteStudent.php"><b>Xóa thông tin học sinh</b></a>
+                        <button class="nav-link" id='update-student'><b>Sửa thông tin học sinh</b></button>
+                        <button class="nav-link" id='remove-student'><b>Xóa thông tin học sinh</b></button>
                         <button class="nav-link" id='list-student'><b>Danh sách học sinh</b></button>
                     </div>
                   </div>
@@ -126,28 +143,54 @@ session_start();
         </div>
     </div>
     <div class='item content' id='content'>
-        <h2>Infomation</h2>
-        <div class='box-information'>
-            <div class='item-box-information'>
-                <h3>Học sinh</h3>
-                <div>Số tài khoản học sinh: <?php echo $resultStudent->num_rows; ?></div>
-                <div>Số tài khoản học sinh đã đăng kí khóa học: <?php echo $resultStudentStudying->num_rows; ?></div>
-                <div><a href="detailStudent.php"><button type="button" class="btn btn-light" id="details">Chi tiết</button></a></div>
-            </div>
-            <div class='item-box-information'>
-                <h3>Giáo viên</h3>
-                <div>Số tài khoản giáo viên: <?php echo $resultTeacher->num_rows; ?></div>
-                <div>Số giáo viên đã có lớp dạy: <?php echo $resultTeacherTeaching->num_rows; ?></div>
-            </div>
-            <div class='item-box-information'>
-                <h3>Khóa học</h3>
-                <div>Số khóa học: <?php echo $resultCourse->num_rows; ?></div>
-            </div>
-            <div class='item-box-information'>
-                <h3>Lớp</h3>
-                <div>Số lớp: <?php echo $resultClass->num_rows; ?></div>
-            </div>
+    <?php
+        require "connect.php";
+        $sqlStudent = "SELECT * FROM hoc_sinh INNER JOIN tai_khoan ON hoc_sinh.ma_tai_khoan = tai_khoan.ma_tai_khoan INNER JOIN diem_cua_lop ON hoc_sinh.ma_hoc_sinh = diem_cua_lop.ma_hoc_sinh INNER JOIN lop ON diem_cua_lop.ma_lop = lop.ma_lop";
+        $resultStudent = $conn->query($sqlStudent);
+    ?>
+        <div class="delete-student">
+        <table class="table table-striped table-delete-student">
+        <tr>
+            <td colspan='7'>
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            </td>
+          </tr>
+          <tr>
+              <th>#</th>
+              <th>Tên học sinh</th>
+              <th>Lớp</th>
+              <th>Điểm đầu vào</th>
+              <th>Email</th>
+              <th>Số điện thoại</th>
+              <th>Xóa</th>
+          </tr>
+          
+              <?php
+              
+              for($i=1;$resultStudent->num_rows>=$i;$i++){
+                  $rowStudent = $resultStudent->fetch_assoc();
+                  echo "<tr>";
+                      echo "<td>" . $i . "</td>";
+                      echo "<td>" . $rowStudent['ho'] . " " .$rowStudent['ten'] . "</td>";
+                      echo "<td>" . $rowStudent['ten_lop'] . "</td>";
+                      echo "<td>" . $rowStudent['diem_dau_vao'] . "</td>";
+                      echo "<td>" . $rowStudent['email'] . "</td>";
+                      echo "<td>" . $rowStudent['so_dien_thoai'] . "</td>";
+                      echo "<td>"; 
+              ?>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" name="delete_student[]" value=<?php echo $rowStudent['ma_hoc_sinh']; ?> id="flexCheckDefault">
+                        </div>
+              <?php
+                      echo "</td>";
+                  echo "</tr>";
+              }
+              ?>
+          </tr>
+        </table>
         </div>
+        <br>
+        <button type="button" class="btn btn-danger">Xóa</button>
     </div>
 </content>
     <?php
@@ -157,3 +200,7 @@ session_start();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+

@@ -1,12 +1,11 @@
 <head>
 <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
-<script src="js/ajax_score_high.js"></script>
 </head>
 <body>
 <div>
 <?php
 require 'connect.php';
-$sqlHighScore = "SELECT * FROM `hoc_sinh` WHERE diem_dau_vao >= 9 ORDER BY diem_dau_vao DESC";
+$sqlHighScore = "SELECT * FROM `hoc_sinh` WHERE diem_dau_vao <= 4 ORDER BY diem_dau_vao ASC";
 $resultSqlHighScore = $conn->query($sqlHighScore);
 if($resultSqlHighScore->num_rows>0){
     ?>

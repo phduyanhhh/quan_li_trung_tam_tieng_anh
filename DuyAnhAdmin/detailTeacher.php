@@ -1,3 +1,4 @@
+<div id="web-detail-student">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,32 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
-    <script src="js/ajax_score_high.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="js/ex.js"></script>
+    <script src="js/student_score.js"></script>
+    
 </head>
 <body>
 <?php
 session_start();
   if(isset($_SESSION['ten'])){
-    require 'connect.php';
-    // số tài khoản
-    $sqlStudent = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 3";
-    $sqlTeacher = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 2";
-    // số tài khoản đang hoạt động
-    $sqlStudentStudying = "SELECT * FROM hoc_sinh";
-    $sqlTeacherTeaching = "SELECT * FROM lop GROUP BY ma_giao_vien";
-    $resultStudent = $conn->query($sqlStudent);
-    $resultTeacher = $conn->query($sqlTeacher);
-    $resultStudentStudying = $conn->query($sqlStudentStudying);
-    $resultTeacherTeaching = $conn->query($sqlTeacherTeaching);
-    // Số khóa học
-    $sqlCourse = "SELECT * FROM khoa_hoc";
-    $resultCourse = $conn->query($sqlCourse);
-    // Số lớp học
-    $sqlClass = "SELECT * FROM lop";
-    $resultClass = $conn->query($sqlClass);
-    ?>
+?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-menu-top">
     <div class="container-fluid nav-menu">
       <a class="navbar-brand" href="#"><img src="../image/img-british-council.jpg" class='img-logo'></a>
@@ -72,8 +55,10 @@ session_start();
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" id='remove-student' href="deleteStudent.php"><b>Xóa thông tin học sinh</b></a>
-                        <button class="nav-link" id='list-student'><b>Danh sách học sinh</b></button>
+                        <a class="nav-link" href=""><b>Thêm học sinh</b></a>
+                        <a class="nav-link" href=""><b>Sửa thông tin học sinh</b></a>
+                        <a class="nav-link" href=""><b>Xóa thông tin học sinh</b></a>
+                        <a class="nav-link" href=""><b>Danh sách học sinh</b></a>
                     </div>
                   </div>
                 </div>
@@ -125,27 +110,80 @@ session_start();
               </div>
         </div>
     </div>
+    <div class="detail-score">
+        <div id="detail-score"></div>
+    </div>
     <div class='item content' id='content'>
-        <h2>Infomation</h2>
-        <div class='box-information'>
-            <div class='item-box-information'>
-                <h3>Học sinh</h3>
-                <div>Số tài khoản học sinh: <?php echo $resultStudent->num_rows; ?></div>
-                <div>Số tài khoản học sinh đã đăng kí khóa học: <?php echo $resultStudentStudying->num_rows; ?></div>
-                <div><a href="detailStudent.php"><button type="button" class="btn btn-light" id="details">Chi tiết</button></a></div>
-            </div>
-            <div class='item-box-information'>
-                <h3>Giáo viên</h3>
-                <div>Số tài khoản giáo viên: <?php echo $resultTeacher->num_rows; ?></div>
+        <?php
+        require "connect.php";
+        $sqlTeacher = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 2";
+        $resultTeacher = $conn->query($sqlTeacher);
+        $sqlTeacherTeaching = "SELECT * FROM lop GROUP BY ma_giao_vien";
+        $resultTeacherTeaching = $conn->query($sqlTeacherTeaching);
+        $sqlTeacherHigh = "SELECT * FROM giao_vien ORDER BY trinh_do DESC";
+        $sqlTeacherLow = "SELECT * FROM giao_vien ORDER BY trinh_do ASC";
+        $resultTeacherHigh = $conn->query($sqlTeacherHigh);
+        $resultTeacherLow = $conn->query($sqlTeacherLow);
+        ?>
+        <div class="header-content-info-student">
+            <h2>Thông tin giáo viên</h2>
+            <div>
+                <div>Số giáo viên: <?php echo $resultTeacher->num_rows; ?></div>
                 <div>Số giáo viên đã có lớp dạy: <?php echo $resultTeacherTeaching->num_rows; ?></div>
             </div>
+        </div>
+        <div class='box-information'>
             <div class='item-box-information'>
-                <h3>Khóa học</h3>
-                <div>Số khóa học: <?php echo $resultCourse->num_rows; ?></div>
+                <h3 class="header-box-info-student">Các giáo viên có trình độ cao nhất</h3>
+                <?php
+                    if($resultTeacher->num_rows>0){
+                        ?>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>#</th>
+                                <th>Giáo viên</th>
+                                <th>Trình độ</th>
+                                <?php
+                                for($i=1;$i<=5;$i++){
+                                    $rowTeacherHigh = $resultTeacherHigh->fetch_assoc();
+                                    echo "<tr>";
+                                        echo "<td>" . $i . "</td>";
+                                        echo "<td>" . $rowTeacherHigh['ho'] . " " .$rowTeacherHigh['ten'] . "</td>";
+                                        echo "<td>" . $rowTeacherHigh['trinh_do'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </tr>
+                        </table>
+                        <?php
+                    }
+                ?>
             </div>
             <div class='item-box-information'>
-                <h3>Lớp</h3>
-                <div>Số lớp: <?php echo $resultClass->num_rows; ?></div>
+            <h3 class="header-box-info-student">Các giáo viên có trình độ thấp nhất</h3>
+                <?php
+                    if($resultTeacher->num_rows>0){
+                        ?>
+                        <table class="table table-striped">
+                            <tr>
+                                <th>#</th>
+                                <th>Giáo viên</th>
+                                <th>Trình độ</th>
+                                <?php
+                                for($i=1;$i<=5;$i++){
+                                    $rowTeacherLow = $resultTeacherLow->fetch_assoc();
+                                    echo "<tr>";
+                                        echo "<td>" . $i . "</td>";
+                                        echo "<td>" . $rowTeacherLow['ho'] . " " .$rowTeacherLow['ten'] . "</td>";
+                                        echo "<td>" . $rowTeacherLow['trinh_do'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </tr>
+                        </table>
+                        <?php
+                    }
+                ?>
             </div>
         </div>
     </div>
@@ -157,3 +195,4 @@ session_start();
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
+</div>
