@@ -1,5 +1,5 @@
 <?php
-    $servername = "localhost:3366";
+    $servername = "localhost";
     $username = "root";
     $password = "";
     $db = "quan_ly_web_hoc_tieng_anh";

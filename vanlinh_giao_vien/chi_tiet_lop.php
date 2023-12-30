@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" type='text/css' href="../css/style-home-teacher.css">
+    <link rel="stylesheet" type='text/css' href="../css/style-chi-tiet-lop.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
     <script src="js/ajax_information.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -19,13 +19,7 @@ session_start();
     // số tài khoản đang hoạt động
     $sqlLopGiangDay = "SELECT * FROM lop WHERE ma_giao_vien = $ma_giao_vien ";
     $resultLopGiangDay = $conn->query($sqlLopGiangDay);
-    
-    // Số khóa học
-    $sqlCourse = "SELECT * FROM khoa_hoc";
-    $resultCourse = $conn->query($sqlCourse);
-    // Số lớp học
-    $sqlClass = "SELECT * FROM lop";
-    $resultClass = $conn->query($sqlClass);
+
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-menu-top">
     <div class="container-fluid nav-menu">
@@ -35,11 +29,7 @@ session_start();
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <button class="nav-link" id="text" href="xem_thong_tin_ca_nhan.php">Trang chủ</button>
-          <button class="nav-link" id="text"></button>
-          <button class="nav-link" id="text"></button>
-          <button class="nav-link" id="text"></button>
-          <button class="nav-link" id="text"></button>
+            <a class="nav-link" id="text" href="home_teacher.php">Trang chủ</a>
         </div>
       </div>
       <div class="dropdown mt-3" id="box-avt">
@@ -68,8 +58,7 @@ session_start();
                       <?php
                       for($i=0; $i<$resultLopGiangDay->num_rows; $i++){
                       $row = $resultLopGiangDay->fetch_assoc();
-                      echo "<a class='nav-link' href='chi_tiet_lop.php?ma_lop=$row[ma_lop]'><b> $row[ten_lop] </b></a>";
-                      $_SESSION['ma_lop'] = $row['ma_lop'];
+                      echo "<a class='nav-link' href='chi_tiet_lop.php'><b> $row[ten_lop] </b></a>";
                       }
                       ?>
                     </div>
@@ -125,15 +114,45 @@ session_start();
     </div>
     <div class='item content' id='content'>
         <div class='box-information'>
-            <img  class="img-right-content" src="../image/reading.jpg" alt="">
+            <div class='item-box-information'>
+                <h3>Thông tin lớp học</h3>
+                <?php
+                    $ma_lop = $_SESSION['ma_lop'];
+                    $sql_xem_thong_tin_diem_cua_lop = "SELECT hoc_sinh.ten,hoc_sinh.ho, diem_cua_lop.* FROM diem_cua_lop
+                    INNER JOIN hoc_sinh ON diem_cua_lop.ma_hoc_sinh = hoc_sinh.ma_hoc_sinh WHERE ma_lop = $ma_lop" ;
+                    $result_xem_thong_tin_diem_cua_lop = $conn->query($sql_xem_thong_tin_diem_cua_lop);
+                    ?>
+                    <table class="table table-striped">
+                    <tr>
+                        <th>#</th>
+                        <th>Họ</th>
+                        <th>Tên</th>
+                        <th>Điểm A</th>
+                        <th>Điểm B</th>
+                        <th>Nhận xét</th>
+                        <?php
+                        for($i=1;$result_xem_thong_tin_diem_cua_lop->num_rows>=$i;$i++){
+                            $row = $result_xem_thong_tin_diem_cua_lop->fetch_assoc();
+                            echo "<tr>";
+                                echo "<td>" . $i . "</td>";
+                                echo "<td>" . $row['ho'] . "</td>";
+                                echo "<td>" . $row['ten'] . "</td>";
+                                echo "<td>" . $row['diem_a'] . "</td>";
+                                echo "<td>" . $row['diem_b'] . "</td>";
+                                echo "<td>" . $row['nhan_xet'] . "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </content>
     <?php
   }
 ?>
-<section class="">
-  <!-- Footer -->
+
   <footer class="bg-body-tertiary">
     <!-- Grid container -->
     <div class="container p-4">
