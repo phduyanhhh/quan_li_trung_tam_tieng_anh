@@ -35,7 +35,7 @@
             echo "<td>$row[email]</td>";
             echo "<td>$row[so_dien_thoai]</td>";
             echo "<td>$row[diem_dau_vao]</td>";
-            echo "<td><a href='deleteStudentDetail.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>" . "Xóa" . "</a> <a href=#>Sửa</a></td>";
+            echo "<td><a href='deleteStudentDetail.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>" . "Xóa" . "</a> <a href='updateStudentDetail.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>Sửa</a></td>";
         }
         echo "</table>";
         echo "</form>";

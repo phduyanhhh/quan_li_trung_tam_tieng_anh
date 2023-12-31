@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thêm thông tin học sinh</title>
-    <link rel="stylesheet" href="../css/style-addStudentDetail.css">
+    <link rel="stylesheet" href="../css/style-add_updateStudentDetail.css">
 </head>
 <body>
 <div class="input-detail-panel">
