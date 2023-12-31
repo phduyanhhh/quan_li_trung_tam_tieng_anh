@@ -22,16 +22,16 @@
     <p class="panel-title">Trang cập nhật thông tin</p> <br>    
     <form action="" method="post">   
         <label for="ten">Đổi tên</label>
-        <input type="text" id="ten" name="ten" required class="input-content input" value="<?php echo"$ten_cu"?>"><br><br>
+        <input type="text" id="ten" name="ten" required class="input-content input" placeholder="<?php echo"$ten_cu"?>"><br><br>
         
         <label for="ho">Đổi Họ</label>
-        <input type="text" id="ho" name="ho" required class="input-content input" value="<?php echo"$ho_cu"?>"><br><br>
+        <input type="text" id="ho" name="ho" required class="input-content input" placeholder="<?php echo"$ho_cu"?>"><br><br>
         
         <label for="email">Email</label>
-        <input type="text" id="email" name="email" required class="input-content input" value="<?php echo"$email_cu"?>"><br><br>
+        <input type="text" id="email" name="email" required class="input-content input" placeholder="<?php echo"$email_cu"?>"><br><br>
 
         <label for="phone">Số điện thoại</label>
-        <input type="number" id="phone" name="phone" required class="input-content input" value="<?php echo"$phone_cu"?>"><br><br>
+        <input type="number" id="phone" name="phone" required class="input-content input" placeholder="<?php echo"$phone_cu"?>"><br><br>
         
         <input type="submit" name="submit" value="Cập nhật" class="buttom-add">
     </form>

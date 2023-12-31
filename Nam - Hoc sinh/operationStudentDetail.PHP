@@ -9,41 +9,37 @@
 <body>
     <div class="detail-panel">
     <p class="panel-title">Thông tin Học sinh</p>
-    <?php
-    echo "<form method=POST>";
-    require 'connect.php';
-    mysqli_set_charset($conn, 'UTF8');
-    $sql = "SELECT * FROM hoc_sinh";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0)
-    {
-        echo "<table border = 1>
-        <tr>    
-            <th>ID</th>
-            <th>Tên</th>
-            <th>họ</th>
-            <th>Email</th>
-            <th>Số điện thoại</th>
-            <th>Điểm đầu vào</th>
-            <th>Thao tác</th>
-        <tr>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>$row[ma_hoc_sinh]</td>";
-            echo "<td>$row[ten]</td>";
-            echo "<td>$row[ho]</td>";
-            echo "<td>$row[email]</td>";
-            echo "<td>$row[so_dien_thoai]</td>";
-            echo "<td>$row[diem_dau_vao]</td>";
-            echo "<td><a href='deleteStudentDetail.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>" . "Xóa" . "</a> <a href='updateStudentDetail.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>Sửa</a></td>";
-        }
-        echo "</table>";
-        echo "</form>";
-    }
-    else {
-        echo "no student in database";
-    }
-    ?>
+    <h1 style="text-align: center">Tìm kiếm học sinh</h1>
+        <form method="get">
+        <input type="text" id="email" placeholder='Search' style="width: 40%; margin-left:350px">
+        <br>
+        </form>
+    
+    <div id='searchResults'></div>
+    
 </div>
+<script>
+            document.getElementById('email').addEventListener('input', function() {
+            // Get the value entered by the user
+            var inputValue = this.value;
+
+            // Make an AJAX request to the server to get search results
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        // Update the searchResults div with the received data
+                        document.querySelector('#searchResults').innerHTML = xhr.responseText;
+                    } else {
+                        console.error('Error fetching search results');
+                    }
+                }
+            };
+
+            // Send the AJAX request to the server with the entered value
+            xhr.open('GET', 'show_ket_qua.php?ten=' + inputValue, true);
+            xhr.send();
+        });
+    </script>
 </body>
 </html>
