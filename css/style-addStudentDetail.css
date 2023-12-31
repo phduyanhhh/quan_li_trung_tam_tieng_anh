@@ -20,10 +20,6 @@
     font-size: 15px;
     border-radius: 8px;
 }
-.buttom-register:hover {
-    background-color: #5DEB4B;
-    color: rgb(11, 73, 149);
-}
 .input-content {
     margin-left: 40px;
 }
