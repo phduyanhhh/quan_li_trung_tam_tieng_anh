@@ -7,9 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
-    <script src="js/ajax_score_high.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="js/ex.js"></script>
+    <script src="js/find.js"></script>
     <style>
       .table-delete-student {
     text-align: center;
@@ -88,7 +87,6 @@ session_start();
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <button class="nav-link" id='update-student'><b>Sửa thông tin học sinh</b></button>
                         <button class="nav-link" id='remove-student'><b>Xóa thông tin học sinh</b></button>
                         <button class="nav-link" id='list-student'><b>Danh sách học sinh</b></button>
                     </div>
@@ -143,28 +141,33 @@ session_start();
         </div>
     </div>
     <div class='item content' id='content'>
+     
     <?php
+    
         require "connect.php";
         $sqlStudent = "SELECT * FROM hoc_sinh INNER JOIN tai_khoan ON hoc_sinh.ma_tai_khoan = tai_khoan.ma_tai_khoan INNER JOIN diem_cua_lop ON hoc_sinh.ma_hoc_sinh = diem_cua_lop.ma_hoc_sinh INNER JOIN lop ON diem_cua_lop.ma_lop = lop.ma_lop";
         $resultStudent = $conn->query($sqlStudent);
     ?>
-        <div class="delete-student">
-        <table class="table table-striped table-delete-student">
-        <tr>
-            <td colspan='7'>
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            </td>
-          </tr>
-          <tr>
-              <th>#</th>
-              <th>Tên học sinh</th>
-              <th>Lớp</th>
-              <th>Điểm đầu vào</th>
-              <th>Email</th>
-              <th>Số điện thoại</th>
-              <th>Xóa</th>
-          </tr>
-          
+    
+    
+      
+        <div id="alert-student">
+          <input id="search-student">
+            <div>
+              <div class="delete-student">
+              <div id="content-find-student">
+            
+              <table class="table table-striped table-delete-student">
+                <tr>
+                    <th>#</th>
+                    <th>Tên học sinh</th>
+                    <th>Lớp</th>
+                    <th>Điểm đầu vào</th>
+                    <th>Email</th>
+                    <th>Số điện thoại</th>
+                    <th>Xóa</th>
+                </tr>
+      
               <?php
               
               for($i=1;$resultStudent->num_rows>=$i;$i++){
@@ -178,25 +181,68 @@ session_start();
                       echo "<td>" . $rowStudent['so_dien_thoai'] . "</td>";
                       echo "<td>"; 
               ?>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" name="delete_student[]" value=<?php echo $rowStudent['ma_hoc_sinh']; ?> id="flexCheckDefault">
-                        </div>
-              <?php
+                            <div class="form-check">
+                              <input class="form-check-input checkbox-student" type="checkbox" name="delete_student[]" value=<?php echo $rowStudent['ma_tai_khoan']; ?> id="checkbox-student">
+                            </div>
+                  <?php
                       echo "</td>";
                   echo "</tr>";
               }
-              ?>
-          </tr>
-        </table>
+                  ?>
+              </tr>
+            </div>
+            </table>
+            </div>
+          </div>
+          
+            <button type="button" class="btn btn-danger" id="button-delete-student">Xóa</button>
         </div>
-        <br>
-        <button type="button" class="btn btn-danger">Xóa</button>
-    </div>
+            <br>
+      </div>
+        
 </content>
     <?php
   }
 ?>
+    <!-- <script>
+    
+    function delete_student(){
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function(){
+          if(this.readyState==4 && this.status==200){
+              document.querySelector('#content-find-student').innerHTML = this.responseText;
+          }
+      };
+      const value_name_student = document.querySelector("#search-student").value;
+      xmlhttp.open("GET", `getFindStudent.php?name=`+value_name_student, true);
+      xmlhttp.send();
+    }
 
+  let selectedCheckboxes = []; // Mảng để lưu trữ các giá trị checkbox đã chọn
+
+  function checkbox() {
+  // Lấy danh sách các checkbox được chọn
+    const checkboxes = document.querySelectorAll('.checkbox-student:checked');
+    console.log(checkboxes);
+    selectedCheckboxes = Array.from(checkboxes).map(checkbox => checkbox.value);
+    console.log(selectedCheckboxes);
+    // ajax
+    var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function(){
+          if(this.readyState==4 && this.status==200){
+              document.querySelector('#alert-student').innerHTML = this.responseText;
+            }
+      };
+      xmlhttp.open("GET", `getDeleteStudent.php?select=`+selectedCheckboxes, true);
+      xmlhttp.send();
+  }
+    // document.getElementById('search-student'). addEventListener('keyup', delete_student)
+    // document.getElementById('checkbox-student').addEventListener('change', checkbox)
+    document.addEventListener("DOMContentLoaded", function(){
+      document.getElementById('search-student').onkeyup = delete_student;
+      document.getElementById('button-delete-student').onclick = checkbox;
+    });
+    </script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

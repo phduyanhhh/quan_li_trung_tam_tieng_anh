@@ -1,4 +1,3 @@
-<div id="web-detail-student">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,20 +7,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
-    <script src="js/class_detail.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/find.js"></script>
     <style>
-      .item-box-information-class {
-        width: 80%;
-      }
-      .table-class {
-        text-align: center;
-      }
+      .table-delete-student {
+    text-align: center;
+}
+.table-delete-student tr td th {
+    text-align: center;
+}
+.delete-student {
+  overflow-y: scroll;
+  height: 500px;
+  width: 100%;
+}
+#search-student {
+  width: 50%;
+}
     </style>
 </head>
 <body>
 <?php
 session_start();
   if(isset($_SESSION['ten'])){
+    require 'connect.php';
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-menu-top">
     <div class="container-fluid nav-menu">
@@ -62,10 +71,8 @@ session_start();
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" href=""><b>Thêm học sinh</b></a>
-                        <a class="nav-link" href=""><b>Sửa thông tin học sinh</b></a>
-                        <a class="nav-link" href=""><b>Xóa thông tin học sinh</b></a>
-                        <a class="nav-link" href=""><b>Danh sách học sinh</b></a>
+                        <button class="nav-link" id='remove-student'><b>Xóa thông tin học sinh</b></button>
+                        <button class="nav-link" id='list-student'><b>Danh sách học sinh</b></button>
                     </div>
                   </div>
                 </div>
@@ -77,7 +84,7 @@ session_start();
                   </h2>
                   <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" href=""><b>Thêm giáo viên</b></a>
+                        <a class="nav-link" href="addTeacher.php"><b>Thêm giáo viên</b></a>
                         <a class="nav-link" href=""><b>Sửa thông tin giáo viên</b></a>
                         <a class="nav-link" href=""><b>Xóa thông tin giáo viên</b></a>
                         <a class="nav-link" href=""><b>Danh sách giáo viên</b></a>
@@ -117,81 +124,26 @@ session_start();
               </div>
         </div>
     </div>
-    <div class="detail-class">
-        <div id="detail-class">vff</div>
-    </div>
     <div class='item content' id='content'>
-        <?php
-        require "connect.php";
-        $sqlClass = "SELECT * FROM lop";
-        $resultClass = $conn->query($sqlClass);
-        // ----------Tên khóa học
-        $sqlClassCourse = "SELECT lop.ten_lop, khoa_hoc.ten_khoa_hoc FROM `lop` INNER JOIN khoa_hoc ON lop.ma_khoa_hoc = khoa_hoc.ma_khoa_hoc;";
-        $resultClassCourse = $conn->query($sqlClassCourse);
-        // ---------Sĩ số----------
-        $sqlClassHaveStudent = "SELECT lop.ma_lop, diem_cua_lop.ma_hoc_sinh FROM `lop` INNER JOIN diem_cua_lop ON lop.ma_lop = diem_cua_lop.ma_lop GROUP BY lop.ma_lop"; // Số lớp có học sinh học
-        $resultClassHaveStudent = $conn->query($sqlClassHaveStudent);
-        // Giáo viên dạy
-        $sqlTeacherClass = "SELECT lop.ma_lop, lop.ten_lop, giao_vien.ho, giao_vien.ten FROM lop INNER JOIN giao_vien ON lop.ma_giao_vien = giao_vien.ma_giao_vien";
-        $resultTeacherClass = $conn->query($sqlTeacherClass);
-        ?>
-        <div class="header-content-info-student">
-            <h2>Thông tin khóa học</h2>
-            <div>
-                <div>Số khóa học: <?php echo $resultClass->num_rows; ?></div>
-            </div>
-        </div>
-        <div class='box-information'>
-            <div class='item-box-information item-box-information-class'>
-                <h3 class="header-box-info-student">Các khóa học nhiều học sinh đăng kí nhất</h3>
-                <?php
-                    if($resultClass->num_rows>0){
-                        ?>
-                        <table class="table table-striped table-class">
-                            <tr>
-                                <th>#</th>
-                                <th>Khóa</th>
-                                <th>Tên lớp học</th>
-                                <th>Sĩ số</th>
-                                <th>Giáo viên dạy</th>
-                            </tr>
-                                <?php
-                                for($i=1;8>=$i;$i++){
-                                    $rowClass = $resultClass->fetch_assoc();
-                                    $rowClassCourse = $resultClassCourse->fetch_assoc();
-                                    $rowTeacherClass= $resultTeacherClass->fetch_assoc();
-                                    // SQL SĨ SỐ
-                                    $sqlStudentClass = "SELECT lop.ma_lop, diem_cua_lop.ma_hoc_sinh FROM `lop` INNER JOIN diem_cua_lop ON lop.ma_lop = diem_cua_lop.ma_lop WHERE lop.ma_lop = '$i'";
-                                    $resultStudentClass = $conn->query($sqlStudentClass);
-                                  ?>
-                                  <tr>
-                                    <td><?php echo $i; ?></td>
-                                    <td><?php echo $rowClassCourse['ten_khoa_hoc']; ?></td>
-                                    <td><?php echo $rowClassCourse['ten_lop']; ?></td>
-                                    <td>
-                                        <?php
-                                            echo $resultStudentClass->num_rows . "/" . $rowClass['si_so_toi_da'];
-                                        ?>
-                                    </td>
-                                    <td><?php echo $rowTeacherClass['ho'] . " " . $rowTeacherClass['ten']; ?></td>
-                                  </tr>
-                                <?php
-                                }
-                                ?>
-                        </table>
-                        <button type="button" class="btn btn-info" id="button-detail-class">Chi tiết</button>
-                        <?php
-                    }
-                ?>
-            </div>
+        <div>
+            <h3>Thêm giáo viên</h3> <br>
+            <form action="backendAddTeacher.php" method="post">
+                <input type="text" placeholder="Tên đăng nhập" name='user_name'>
+                <input type="password" placeholder="Mật khẩu" name='password'> <br><br>
+                <input type="text" placeholder="Tên" name='first_name'>
+                <input type="text" placeholder="Họ" name='last_name'> <br><br>
+                <input type="text" placeholder="Email" name='email'> <br><br>
+                <input type="number" placeholder="Số điện thoại" name='phone_number'>
+                <input type="number" placeholder="Trình độ" name='level'>
+                <br><br>
+                <input type="submit" class="btn btn-primary" value="Đăng kí">
+            </form>
         </div>
     </div>
 </content>
-    <?php
+<?php
   }
 ?>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
-</div>

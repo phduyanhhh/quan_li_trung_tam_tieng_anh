@@ -85,7 +85,7 @@ session_start();
                   </h2>
                   <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" href=""><b>Thêm giáo viên</b></a>
+                        <a class="nav-link" href="addTeacher.php"><b>Thêm giáo viên</b></a>
                         <a class="nav-link" href=""><b>Sửa thông tin giáo viên</b></a>
                         <a class="nav-link" href=""><b>Xóa thông tin giáo viên</b></a>
                         <a class="nav-link" href=""><b>Danh sách giáo viên</b></a>
