@@ -7,31 +7,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
-    <script src="js/ajax_score_high.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="js/ex.js"></script>
+    <style>
+      .table-update-teacher {
+        width: 100%;
+        text-align: center;
+      }
+      .update-teacher {
+        overflow-y: scroll;
+        height: 500px;
+      }
+    </style>
 </head>
 <body>
 <?php
 session_start();
   if(isset($_SESSION['ten'])){
-    require 'connect.php';
-    // số tài khoản
-    $sqlStudent = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 3";
-    $sqlTeacher = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 2";
-    // số tài khoản đang hoạt động
-    $sqlStudentStudying = "SELECT * FROM hoc_sinh";
-    $sqlTeacherTeaching = "SELECT * FROM lop GROUP BY ma_giao_vien";
-    $resultStudent = $conn->query($sqlStudent);
-    $resultTeacher = $conn->query($sqlTeacher);
-    $resultStudentStudying = $conn->query($sqlStudentStudying);
-    $resultTeacherTeaching = $conn->query($sqlTeacherTeaching);
-    // Số khóa học
-    $sqlCourse = "SELECT * FROM khoa_hoc";
-    $resultCourse = $conn->query($sqlCourse);
-    // Số lớp học
-    $sqlClass = "SELECT * FROM lop";
-    $resultClass = $conn->query($sqlClass);
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-menu-top">
     <div class="container-fluid nav-menu">
@@ -100,7 +91,7 @@ session_start();
                   </h2>
                   <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" href="addCourse.php"><b>Thêm khóa học</b></a>
+                        <a class="nav-link" href=""><b>Thêm khóa học</b></a>
                         <a class="nav-link" href=""><b>Sửa khóa học</b></a>
                         <a class="nav-link" href=""><b>Xóa khóa học</b></a>
                         <a class="nav-link" href=""><b>Danh sách khóa học</b></a>
@@ -126,34 +117,23 @@ session_start();
         </div>
     </div>
     <div class='item content' id='content'>
-        <h2>Infomation</h2>
-        <div class='box-information'>
-            <div class='item-box-information'>
-                <h3>Học sinh</h3>
-                <div>Số tài khoản học sinh: <?php echo $resultStudent->num_rows; ?></div>
-                <div>Số tài khoản học sinh đã đăng kí khóa học: <?php echo $resultStudentStudying->num_rows; ?></div>
-                <div><a href="detailStudent.php"><button type="button" class="btn btn-light" id="details">Chi tiết</button></a></div>
-            </div>
-            <div class='item-box-information'>
-                <h3>Giáo viên</h3>
-                <div>Số tài khoản giáo viên: <?php echo $resultTeacher->num_rows; ?></div>
-                <div>Số giáo viên đã có lớp dạy: <?php echo $resultTeacherTeaching->num_rows; ?></div>
-            </div>
-            <div class='item-box-information'>
-                <h3>Khóa học</h3>
-                <div>Số khóa học: <?php echo $resultCourse->num_rows; ?></div>
-            </div>
-            <div class='item-box-information'>
-                <h3>Lớp</h3>
-                <div>Số lớp: <?php echo $resultClass->num_rows; ?></div>
-            </div>
-        </div>
+        <h3>Thêm khóa học</h3>
+      <form action="" method="POST">
+        <p>Tên khóa học: </p>
+        <input type="text" name='name_course'> <br><br>
+        <p>Số buổi học:</p>
+        <input type="number" name='lession'> <br><br>
+        <p>Học phí:</p>
+        <input type="number" name='fee'> <br><br>
+        <p>Điều kiện:</p>
+        <input type="number" name='condition'> <br> <br>
+        <input type="submit" value="Thêm khóa học">
+      </form>
     </div>
 </content>
     <?php
   }
 ?>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
