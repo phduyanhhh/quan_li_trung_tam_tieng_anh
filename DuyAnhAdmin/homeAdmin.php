@@ -129,10 +129,10 @@ session_start();
         <h2>Infomation</h2>
         <div class='box-information'>
             <div class='item-box-information'>
-                <h3>Học sinh</h3>
+                <h3><a href="detailStudent.php" class='nav-link'>Học sinh</a></h3>
                 <div>Số tài khoản học sinh: <?php echo $resultStudent->num_rows; ?></div>
                 <div>Số tài khoản học sinh đã đăng kí khóa học: <?php echo $resultStudentStudying->num_rows; ?></div>
-                <div><a href="detailStudent.php"><button type="button" class="btn btn-light" id="details">Chi tiết</button></a></div>
+                <div></div>
             </div>
             <div class='item-box-information'>
                 <h3>Giáo viên</h3>

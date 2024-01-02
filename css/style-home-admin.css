@@ -57,7 +57,6 @@ content {
     align-items: center;
 }
 .menu-left {
-    border:1px solid #0e710c;
     width: 18%;
     height: 635px;
 }
@@ -65,13 +64,11 @@ content {
     padding: 20px;
 }
 .content {
-    border:1px solid #0e710c;
     width: 80%;
     margin-left: 15px;
 }
 .item-box-information {
     width: 48%;
-    border: 1px solid black;
     padding: 10px;
     margin: 10px;
 }
@@ -109,7 +106,6 @@ content {
 }
 .scrollable { /* Chiều cao của phần tử cuộn */
     overflow-y: scroll; /* Kích hoạt thanh cuộn khi nội dung vượt quá chiều cao */
-    border: 1px solid #ccc;
     margin: auto;
     margin-left: auto;
     width: 600px;

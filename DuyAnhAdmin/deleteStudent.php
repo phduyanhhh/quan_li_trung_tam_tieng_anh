@@ -148,9 +148,6 @@ session_start();
         $sqlStudent = "SELECT * FROM hoc_sinh INNER JOIN tai_khoan ON hoc_sinh.ma_tai_khoan = tai_khoan.ma_tai_khoan INNER JOIN diem_cua_lop ON hoc_sinh.ma_hoc_sinh = diem_cua_lop.ma_hoc_sinh INNER JOIN lop ON diem_cua_lop.ma_lop = lop.ma_lop";
         $resultStudent = $conn->query($sqlStudent);
     ?>
-    
-    
-      
         <div id="alert-student">
           <input id="search-student">
             <div>

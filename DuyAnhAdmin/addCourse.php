@@ -118,7 +118,7 @@ session_start();
     </div>
     <div class='item content' id='content'>
         <h3>Thêm khóa học</h3>
-      <form action="" method="POST">
+      <form action="backendAddCourse.php" method="POST">
         <p>Tên khóa học: </p>
         <input type="text" name='name_course'> <br><br>
         <p>Số buổi học:</p>
