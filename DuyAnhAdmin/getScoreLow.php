@@ -29,7 +29,6 @@ if($resultSqlHighScore->num_rows>0){
                     }
                     ?>
                 </tr>
-                
             </table>
         </div>
     </div>
