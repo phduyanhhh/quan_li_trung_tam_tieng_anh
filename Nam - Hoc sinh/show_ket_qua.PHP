@@ -16,7 +16,7 @@
         if ($result->num_rows > 0)
         {   
             echo "<br>";
-            echo "<table border = 1>
+            echo "<table>
             <tr>    
                 <th>ID</th>
                 <th>Tên</th>
@@ -34,10 +34,9 @@
                 echo "<td>$row[email]</td>";
                 echo "<td>$row[so_dien_thoai]</td>";
                 echo "<td>$row[diem_dau_vao]</td>";
-                echo "<td><a href='deleteStudentDetail.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>" . "Xóa" . "</a> <a href='updateStudentDetail.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>Sửa</a></td>";
+                echo "<td><a class='btn btn-danger' href='deleteStudentDetail.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>" . "Xóa" . "</a> <a class='btn btn-info' href='updateStudentDetail.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>Sửa</a></td>";
             }
             echo "</table>";
-            echo "</form>";
         }
         else {
             echo "no student in database";

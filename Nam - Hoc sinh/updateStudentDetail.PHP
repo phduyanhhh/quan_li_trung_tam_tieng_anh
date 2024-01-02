@@ -55,4 +55,5 @@
     }
     ?>  
 </body>
+<a class="notification-content" href="operationStudentDetail.PHP">vê trang thông tin học sinh</a>
 </html>
