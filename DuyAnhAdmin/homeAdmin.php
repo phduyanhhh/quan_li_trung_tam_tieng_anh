@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
+    <link rel="stylesheet" type='text/css' href="../css/style-homeadmin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
     <script src="js/ajax_score_high.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -62,9 +62,11 @@ session_start();
 <content>
     <div class="item menu-left">
         <div>
-            <h2 class="accordion-header" id="header-menu-left"><b>Adminator</b></h2>
+            
             <div class="accordion" id="accordionExample">
+            
                 <div class="accordion-item">
+                <h2 class="accordion-header" id="header-menu-left"><b>Adminator</b></h2>
                   <h2 class="accordion-header">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                       Học sinh
@@ -123,6 +125,7 @@ session_start();
                     </div>
                   </div>
               </div>
+              <br><br><br>
         </div>
     </div>
     <div class='item content' id='content'>

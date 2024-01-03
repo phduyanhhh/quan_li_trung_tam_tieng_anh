@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
+    <link rel="stylesheet" type='text/css' href="../css/style-homeadmin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
@@ -124,6 +124,7 @@ session_start();
             $resultUpdateTeacher = $conn->query($sqlUpdateTeacher);
             $rowUpdateTeacher = $resultUpdateTeacher->fetch_assoc();
             $trinh_do = $rowUpdateTeacher['trinh_do'];
+            $_SESSION['ma_tai_khoan'] = $ma_tai_khoan;
             ?>
             <div>
             <h3>Thêm giáo viên</h3> <br>

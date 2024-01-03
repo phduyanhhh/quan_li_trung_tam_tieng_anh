@@ -12,8 +12,6 @@
     $resultFindStudent = $conn->query($sqlFindStudent);
     ?>
     <table class="table table-striped table-delete-student">
-
-      
           <tr>
               <th>#</th>
               <th>Tên học sinh</th>

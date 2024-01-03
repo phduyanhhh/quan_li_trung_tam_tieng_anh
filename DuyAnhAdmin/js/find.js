@@ -15,6 +15,7 @@ let selectedCheckboxes = []; // Mảng để lưu trữ các giá trị checkbox
 
 function checkbox() {
 // Lấy danh sách các checkbox được chọn
+alert("Xac nhan xoa");
 const checkboxes = document.querySelectorAll('.checkbox-student:checked');
 console.log(checkboxes);
 selectedCheckboxes = Array.from(checkboxes).map(checkbox => checkbox.value);
@@ -23,7 +24,7 @@ console.log(selectedCheckboxes);
 var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function(){
       if(this.readyState==4 && this.status==200){
-          document.querySelector('#alert-student').innerHTML = this.responseText;
+          document.querySelector('#content-find-student').innerHTML = this.responseText;
         }
   };
   console.log(selectedCheckboxes);
