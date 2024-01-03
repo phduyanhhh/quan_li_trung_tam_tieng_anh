@@ -10,7 +10,7 @@
     background-color: rgb(2,45,96);
     padding: 10px;
 }
-#user-avt {
+#img-admin {
     width: 50px;
     margin-bottom: 10px;
     border-radius: 50px;
@@ -82,7 +82,7 @@ content {
     padding-bottom: 5px;
 }
 /* --------student--------- */
-.header-content-info-student {
+.header-content-info-class {
     display: flex;
     flex-direction: column;
     justify-content: left;
