@@ -31,15 +31,25 @@
     font-weight: bold;
     text-align: center;
     }
-    .notification-panel {
-        margin left: 550px;
-        text-align: center;
-    }
     </style>
 </head>
 <body>
     
 </body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="thongTinHocSinh.PHP">Về trang thông tin học sinh</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Disabled</a>
+    </li>
+  </ul>
+</nav>
+<br>
 </html>
 <div class="detail-panel">
 <p class="panel-title">Xóa thông tin học sinh</p>
@@ -56,7 +66,6 @@
     }
     $conn->close();
 ?>
-<a class="btn btn-success" href="operationStudentDetail.PHP">vê trang thông tin học sinh</a>
 <br><br>
 </div>
 </div>

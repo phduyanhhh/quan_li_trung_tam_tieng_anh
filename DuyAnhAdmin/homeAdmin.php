@@ -85,10 +85,10 @@ session_start();
                   </h2>
                   <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" href=""><b>Thêm giáo viên</b></a>
-                        <a class="nav-link" href=""><b>Sửa thông tin giáo viên</b></a>
-                        <a class="nav-link" href=""><b>Xóa thông tin giáo viên</b></a>
-                        <a class="nav-link" href=""><b>Danh sách giáo viên</b></a>
+                        <a class="nav-link" href="addTeacher.php"><b>Thêm giáo viên</b></a>
+                        <a class="nav-link" href="updateTeacher.php"><b>Sửa thông tin giáo viên</b></a>
+                        <a class="nav-link" href="deleteTeacher.php"><b>Xóa thông tin giáo viên</b></a>
+                        <a class="nav-link" href="listTeacher.php"><b>Danh sách giáo viên</b></a>
                     </div>
                   </div>
                 </div>
@@ -100,7 +100,7 @@ session_start();
                   </h2>
                   <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" href=""><b>Thêm khóa học</b></a>
+                        <a class="nav-link" href="addCourse.php"><b>Thêm khóa học</b></a>
                         <a class="nav-link" href=""><b>Sửa khóa học</b></a>
                         <a class="nav-link" href=""><b>Xóa khóa học</b></a>
                         <a class="nav-link" href=""><b>Danh sách khóa học</b></a>
@@ -129,10 +129,10 @@ session_start();
         <h2>Infomation</h2>
         <div class='box-information'>
             <div class='item-box-information'>
-                <h3>Học sinh</h3>
+                <h3><a href="detailStudent.php" class='nav-link'>Học sinh</a></h3>
                 <div>Số tài khoản học sinh: <?php echo $resultStudent->num_rows; ?></div>
                 <div>Số tài khoản học sinh đã đăng kí khóa học: <?php echo $resultStudentStudying->num_rows; ?></div>
-                <div><a href="detailStudent.php"><button type="button" class="btn btn-light" id="details">Chi tiết</button></a></div>
+                <div></div>
             </div>
             <div class='item-box-information'>
                 <h3>Giáo viên</h3>

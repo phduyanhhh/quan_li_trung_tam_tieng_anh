@@ -18,6 +18,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="thongTinHocSinh.PHP">Về trang thông tin học sinh</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Disabled</a>
+    </li>
+  </ul>
+</nav>
+<br>
 <div class="input-detail-panel">
 <p class="panel-title">Thêm thông tin học sinh</p> <br>
     <form method="get" action="">
@@ -35,7 +49,6 @@
         
         <input type="submit" name="submit" value="Thêm" class="buttom-add">
     </form>
-</div>
     <?php
         if (isset($_GET['submit'])) {
             $ten = $_GET['ten'];
@@ -53,11 +66,11 @@
             }
             else
             {
-                echo '<p class="notification-content">đã xảy ra lỗi</p>';
+                echo '<p class="notification-content">Đã xảy ra lỗi</p>';
             }
         }
     ?>
-    <a class="btn btn-success" href="operationStudentDetail.PHP">vê trang thông tin học sinh</a>
+    </div>
 </body>
 
 </html>

@@ -15,17 +15,6 @@
         
         if ($result->num_rows > 0)
         {   
-            echo "<br>";
-            echo "<table>
-            <tr>    
-                <th>ID</th>
-                <th>Tên</th>
-                <th>họ</th>
-                <th>Email</th>
-                <th>Số điện thoại</th>
-                <th>Điểm đầu vào</th>
-                <th>Thao tác</th>
-            <tr>";
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>$row[ma_hoc_sinh]</td>";
@@ -34,9 +23,9 @@
                 echo "<td>$row[email]</td>";
                 echo "<td>$row[so_dien_thoai]</td>";
                 echo "<td>$row[diem_dau_vao]</td>";
-                echo "<td><a class='btn btn-danger' href='deleteStudentDetail.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>" . "Xóa" . "</a> <a class='btn btn-info' href='updateStudentDetail.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>Sửa</a></td>";
+                echo "<td><a class='btn btn-danger' href='xoaThongTinHocSinh.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>" . "Xóa" . "</a> <a class='btn btn-info' href='capNhatThongTinHocSinh.PHP?ma_hoc_sinh="  . $row["ma_hoc_sinh"] . "'>Sửa</a></td>";
+                echo "</tr>";
             }
-            echo "</table>";
         }
         else {
             echo "no student in database";

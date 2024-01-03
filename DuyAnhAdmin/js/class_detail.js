@@ -9,5 +9,5 @@ function detail_class(){
     xmlhttp.send();
 }
 document.addEventListener("DOMContentLoaded", function(){
-    document.querySelector('#detail-class').onclick = detail_class;
+    document.querySelector('#button-detail-class').onclick = detail_class;
 });

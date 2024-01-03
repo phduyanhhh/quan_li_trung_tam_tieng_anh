@@ -118,7 +118,7 @@ session_start();
         </div>
     </div>
     <div class="detail-class">
-        <div id="detail-class"></div>
+        <div id="detail-class">vff</div>
     </div>
     <div class='item content' id='content'>
         <?php
@@ -179,7 +179,7 @@ session_start();
                                 }
                                 ?>
                         </table>
-                        <button type="button" class="btn btn-info" id="detail-class">Chi tiết</button>
+                        <button type="button" class="btn btn-info" id="button-detail-class">Chi tiết</button>
                         <?php
                     }
                 ?>

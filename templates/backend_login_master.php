@@ -31,7 +31,7 @@
                 $rowSqlStudent = $resultSqlStudent->fetch_assoc();
                 $_SESSION['ten'] = $rowSqlStudent['ten'];
                 $_SESSION['vai_tro'] = $rowSqlStudent['ma_vai_tro'];
-                echo 'Phân quyền Học Sinh';
+                header("location: ../Nam/homeStudent.php");
             }
         } else {
             echo "Sai mật khau";

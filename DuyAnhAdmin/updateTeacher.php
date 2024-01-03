@@ -8,45 +8,21 @@
     <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-..." crossorigin="anonymous"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="js/find.js"></script>
     <style>
-      .table-delete-student {
-    text-align: center;
-}
-.table-delete-student tr td th {
-    text-align: center;
-}
-.delete-student {
-  overflow-y: scroll;
-  height: 500px;
-  width: 100%;
-}
-#search-student {
-  width: 50%;
-}
+      .table-update-teacher {
+        width: 100%;
+        text-align: center;
+      }
+      .update-teacher {
+        overflow-y: scroll;
+        height: 500px;
+      }
     </style>
 </head>
 <body>
 <?php
 session_start();
   if(isset($_SESSION['ten'])){
-    require 'connect.php';
-    // số tài khoản
-    $sqlStudent = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 3";
-    $sqlTeacher = "SELECT * FROM tai_khoan WHERE ma_vai_tro = 2";
-    // số tài khoản đang hoạt động
-    $sqlStudentStudying = "SELECT * FROM hoc_sinh";
-    $sqlTeacherTeaching = "SELECT * FROM lop GROUP BY ma_giao_vien";
-    $resultStudent = $conn->query($sqlStudent);
-    $resultTeacher = $conn->query($sqlTeacher);
-    $resultStudentStudying = $conn->query($sqlStudentStudying);
-    $resultTeacherTeaching = $conn->query($sqlTeacherTeaching);
-    // Số khóa học
-    $sqlCourse = "SELECT * FROM khoa_hoc";
-    $resultCourse = $conn->query($sqlCourse);
-    // Số lớp học
-    $sqlClass = "SELECT * FROM lop";
-    $resultClass = $conn->query($sqlClass);
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-menu-top">
     <div class="container-fluid nav-menu">
@@ -87,7 +63,7 @@ session_start();
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <button class="nav-link" id='remove-student'><b>Xóa thông tin học sinh</b></button>
+                        <a class="nav-link" id='remove-student' href="deleteStudent.php"><b>Xóa thông tin học sinh</b></a>
                         <button class="nav-link" id='list-student'><b>Danh sách học sinh</b></button>
                     </div>
                   </div>
@@ -100,10 +76,10 @@ session_start();
                   </h2>
                   <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <a class="nav-link" href=""><b>Thêm giáo viên</b></a>
-                        <a class="nav-link" href=""><b>Sửa thông tin giáo viên</b></a>
-                        <a class="nav-link" href=""><b>Xóa thông tin giáo viên</b></a>
-                        <a class="nav-link" href=""><b>Danh sách giáo viên</b></a>
+                        <a class="nav-link" href="addTeacher.php"><b>Thêm giáo viên</b></a>
+                        <a class="nav-link" href="updateTeacher.php"><b>Sửa thông tin giáo viên</b></a>
+                        <a class="nav-link" href="deleteTeacher.php"><b>Xóa thông tin giáo viên</b></a>
+                        <a class="nav-link" href="listTeacher.php"><b>Danh sách giáo viên</b></a>
                     </div>
                   </div>
                 </div>
@@ -141,109 +117,50 @@ session_start();
         </div>
     </div>
     <div class='item content' id='content'>
-     
-    <?php
-    
-        require "connect.php";
-        $sqlStudent = "SELECT * FROM hoc_sinh INNER JOIN tai_khoan ON hoc_sinh.ma_tai_khoan = tai_khoan.ma_tai_khoan INNER JOIN diem_cua_lop ON hoc_sinh.ma_hoc_sinh = diem_cua_lop.ma_hoc_sinh INNER JOIN lop ON diem_cua_lop.ma_lop = lop.ma_lop";
-        $resultStudent = $conn->query($sqlStudent);
-    ?>
-        <div id="alert-student">
-          <input id="search-student">
-            <div>
-              <div class="delete-student">
-              <div id="content-find-student">
-            
-              <table class="table table-striped table-delete-student">
-                <tr>
-                    <th>#</th>
-                    <th>Tên học sinh</th>
-                    <th>Lớp</th>
-                    <th>Điểm đầu vào</th>
-                    <th>Email</th>
-                    <th>Số điện thoại</th>
-                    <th>Xóa</th>
-                </tr>
-      
-              <?php
-              
-              for($i=1;$resultStudent->num_rows>=$i;$i++){
-                  $rowStudent = $resultStudent->fetch_assoc();
-                  echo "<tr>";
-                      echo "<td>" . $i . "</td>";
-                      echo "<td>" . $rowStudent['ho'] . " " .$rowStudent['ten'] . "</td>";
-                      echo "<td>" . $rowStudent['ten_lop'] . "</td>";
-                      echo "<td>" . $rowStudent['diem_dau_vao'] . "</td>";
-                      echo "<td>" . $rowStudent['email'] . "</td>";
-                      echo "<td>" . $rowStudent['so_dien_thoai'] . "</td>";
-                      echo "<td>"; 
-              ?>
-                            <div class="form-check">
-                              <input class="form-check-input checkbox-student" type="checkbox" name="delete_student[]" value=<?php echo $rowStudent['ma_tai_khoan']; ?> id="checkbox-student">
-                            </div>
-                  <?php
-                      echo "</td>";
-                  echo "</tr>";
-              }
-                  ?>
-              </tr>
-            </div>
-            </table>
-            </div>
-          </div>
-          
-            <button type="button" class="btn btn-danger" id="button-delete-student">Xóa</button>
+      <div>
+        <div>
+          <h3>Sửa thông tin giáo viên</h3>
         </div>
-            <br>
+          <?php
+          require "connect.php";
+          $sqlListTeacher = "SELECT * FROM `tai_khoan` INNER JOIN giao_vien ON tai_khoan.ma_tai_khoan = giao_vien.ma_tai_khoan";
+          $resultListTeacher = $conn->query($sqlListTeacher);
+          if($resultListTeacher->num_rows>0){
+            ?>
+            <div class="update-teacher">
+            <table class="table table-striped table-update-teacher">
+              <tr>
+                  <th>#</th>
+                  <th>Giáo viên</th>
+                  <th>Email</th>
+                  <th>Số điện thoại</th>
+                  <th>Sửa</th>
+              </tr>
+                  <?php
+                  for($i=1;$resultListTeacher->num_rows>=$i;$i++){
+                      $rowListTeacher = $resultListTeacher->fetch_assoc();
+                      $ma_tai_khoan = $rowListTeacher['ma_tai_khoan'];
+                      $_SESSION['ma_tai_khoan'] = $ma_tai_khoan;
+                      echo "<tr>";
+                          echo "<td>" . $i . "</td>";
+                          echo "<td>" . $rowListTeacher['ho'] . " " .$rowListTeacher['ten'] . "</td>";
+                          echo "<td>" . $rowListTeacher['email'] . "</td>";
+                          echo "<td>" . $rowListTeacher['so_dien_thoai'] . "</td>";
+                          echo "<td>" . "<a href='backendUpdateTeacher.php?ma_tai_khoan=$ma_tai_khoan'>" . " Sửa " . "</a>" . "</td>";
+                      echo "</tr>";
+                  }
+                  ?>
+            </table>`
+            </div>
+           <?php 
+          }
+          ?>
       </div>
-        
+    </div>
 </content>
     <?php
   }
 ?>
-    <!-- <script>
-    
-    function delete_student(){
-      var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function(){
-          if(this.readyState==4 && this.status==200){
-              document.querySelector('#content-find-student').innerHTML = this.responseText;
-          }
-      };
-      const value_name_student = document.querySelector("#search-student").value;
-      xmlhttp.open("GET", `getFindStudent.php?name=`+value_name_student, true);
-      xmlhttp.send();
-    }
-
-  let selectedCheckboxes = []; // Mảng để lưu trữ các giá trị checkbox đã chọn
-
-  function checkbox() {
-  // Lấy danh sách các checkbox được chọn
-    const checkboxes = document.querySelectorAll('.checkbox-student:checked');
-    console.log(checkboxes);
-    selectedCheckboxes = Array.from(checkboxes).map(checkbox => checkbox.value);
-    console.log(selectedCheckboxes);
-    // ajax
-    var xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function(){
-          if(this.readyState==4 && this.status==200){
-              document.querySelector('#alert-student').innerHTML = this.responseText;
-            }
-      };
-      xmlhttp.open("GET", `getDeleteStudent.php?select=`+selectedCheckboxes, true);
-      xmlhttp.send();
-  }
-    // document.getElementById('search-student'). addEventListener('keyup', delete_student)
-    // document.getElementById('checkbox-student').addEventListener('change', checkbox)
-    document.addEventListener("DOMContentLoaded", function(){
-      document.getElementById('search-student').onkeyup = delete_student;
-      document.getElementById('button-delete-student').onclick = checkbox;
-    });
-    </script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-
-

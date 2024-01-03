@@ -8,6 +8,7 @@ function update_student(){
     xmlhttp.open("GET", "getUpdateStudent.php", true);
     xmlhttp.send();
 }
+
 document.addEventListener("DOMContentLoaded", function(){
     document.querySelector('#update-student').onclick = update_student;
 });
