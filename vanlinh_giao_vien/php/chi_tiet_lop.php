@@ -11,7 +11,24 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Trang Chủ</title>
+    <title>Chi tiết lớp</title>
+    <script>
+    function tim_kiem_diem_cua_lop() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.querySelector('#thong_tin_diem_cua_lop').innerHTML = this.responseText;
+            }
+        };
+        const value_ma_lop = document.querySelector("#ma_lop").value;
+        const value_ho = document.querySelector("#tim_kiem_diem_cua_lop").value;
+        xmlhttp.open("GET", `nhap_sua_diem_cua_lop.php?ho=` + value_ho + `&ma_lop=` + value_ma_lop , true);
+        xmlhttp.send();
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById('tim_kiem_diem_cua_lop').onkeyup = tim_kiem_diem_cua_lop;
+    });
+    </script>
 </head>
 
 <body>
@@ -34,6 +51,7 @@
 
     ?>
     <!-- Header-nav của trang web -->
+    <!-- Header-nav của trang web -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-menu-top">
         <div class="container-fluid nav-menu">
             <a class="navbar-brand" href="index.php"><img src="../../image/img-british-council.jpg"
@@ -48,7 +66,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style='color: white'>
-                            Lớp học
+                            Quản lý lớp đang giảng dạy
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <?php
@@ -61,8 +79,8 @@
                     ?>
                         </div>
                     </li>
-                    <a href="index.php" class="nav-link" id="text">Trang chủ</a>
-                    <a href="index.php" class="nav-link" id="text">Trang chủ</a>
+                    <a href="thong_tin_lop.php" class="nav-link" id="text">Lớp</a>
+
                 </div>
             </div>
             <div class="dropdown mt-3" id="box-avt">
@@ -86,13 +104,10 @@
             <div>
                 <h2 class="accordion-header" id="header-menu-left"><b>Chức Năng </b></h2>
                 <a type="button" style="margin-bottom: 15px;margin-left: 10px" class="btn btn-outline-secondary "
-                    href="cap_nhat_diem.php?ma_lop=<?php echo $ma_lop; ?>">Đề xuất Thêm học sinh</a>
+                    href="them_hoc_sinh.php?ma_lop=<?php echo $ma_lop; ?>">Thêm học sinh</a>
                 <a type="button" style="margin-bottom: 15px;margin-left: 10px" class="btn btn-outline-secondary "
-                    href="cap_nhat_diem.php?ma_lop=<?php echo $ma_lop; ?>">Đề xuất Xóa học sinh</a>
+                    href="xoa_hoc_sinh.php?ma_lop=<?php echo $ma_lop; ?>">Xóa học sinh</a>
             </div>
-        </div>
-        <div class='cap_nhat'>
-            <div id='cap_nhat'></div>
         </div>
         <div class='item content' id='content'>
             <div class="header-content-info-class">
@@ -103,7 +118,15 @@
                         </b><?php echo $result_xem_thong_tin_diem_cua_lop->num_rows.'/'. $row['si_so_toi_da'] ?></div>
                 </div>
             </div>
-            <div class='box-information'>
+            <table class="table table-striped">
+                <input type="hidden" value='<?php echo $ma_lop ?>' name='ma_lop' id="ma_lop" >
+                <tr>
+                    <td colspan='7'>
+                        <input class="form-control me-2" type="search" placeholder="Nhập họ của học sinh "
+                            aria-label="Search" id="tim_kiem_diem_cua_lop">
+                </tr>
+            </table>
+            <div id=thong_tin_diem_cua_lop class="box-information">
                 <table class="table table-striped">
                     <tr>
                         <th>#</th>
@@ -143,6 +166,43 @@
     <?php 
         }
     ?>
+       <section class="">
+        <!-- Footer -->
+        <footer class="bg-body-tertiary">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Maxim</h5>
+
+                        <p>
+                            Do the difficult things while they are easy and do the great things while they are small. A
+                            journey of a thousand miles begins with a single step – Lão Tử
+                            (Làm những điều khó khăn khi chúng còn dễ dàng và làm những điều tuyệt vời từ những điều nhỏ
+                            nhoi. Một cuộc hành trình ngàn dặm luôn bắt đầu từ những bước đơn lẻ.
+                        </p>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Maxim</h5>
+
+                        <p>
+                            It doesn’t matter how slowly you go as long as you do not stop – Nho giáo
+                            (Không quan trọng bạn đi chậm thế nào miễn là bạn không dừng lại.)
+                        </p>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Grid container -->
+        </footer>
+        <!-- Footer -->
+    </section>
     <!-- Link đến js của bootstrap -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
@@ -152,6 +212,9 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
 </body>
 

@@ -11,7 +11,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Xóa lớp</title>
+    <title>Sửa Lớp</title>
 </head>
 
 <body>
@@ -25,12 +25,10 @@
             // SQL select lớp mà giáo viên đang dạy 
             $sql_select_lop = "SELECT * FROM lop WHERE ma_giao_vien = $ma_giao_vien ";
             $result_select_lop = $conn->query($sql_select_lop);
-            // SQL lay thong tin lop chua co hoc sinh 
-            $sql_select_lop_chua_co_hoc_sinh = "SELECT diem_cua_lop.ma_hoc_sinh ,lop.* FROM lop LEFT JOIN diem_cua_lop ON lop.ma_lop = diem_cua_lop.ma_lop
-            WHERE diem_cua_lop.ma_lop IS NULL;";
-            $result_lop_chua_co_hoc_sinh = $conn->query($sql_select_lop_chua_co_hoc_sinh);
+            // SQL thong tin tất cả các lớp
+            $sql_select_lop_all = "SELECT * FROM lop";
+            $result_select_lop_all = $conn->query($sql_select_lop_all);
 
-            
     ?>
     <!-- Header-nav của trang web -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-menu-top">
@@ -82,7 +80,7 @@
     <!-- Content của trang -->
     <content>
         <div class="item menu-left">
-        <div>
+            <div>
                 <h2 class="accordion-header" id="header-menu-left"><b>Chức Năng </b></h2>
                 <a type="button" style="margin-bottom: 15px;margin-left: 10px" class="btn btn-outline-secondary "
                     href="thong_tin_lop.php"> Thông tin Lớp </a>
@@ -94,39 +92,41 @@
                     href="sua_lop.php?">Sửa Lớp Học</a>
             </div>
         </div>
+        <div class='cap_nhat'>
+            <div id='cap_nhat'></div>
         </div>
         <div class='item content' id='content'>
             <div class="header-content-info-class">
                 <h3>Thông tin lớp học</h3>
             </div>
-                <table class="table table-striped">
+            <table class="table table-striped">
 
-                    <form action="xoa_lop_be.php" method="post" class='box-information'>
+                <form action="xoa_lop_be.php" method="post" class='box-information'>
                     <tr>
                         <th>#</th>
                         <th>Tên Lớp</th>
                         <th>Sĩ số tối đa</th>
                         <th>Ngày Bắt Đầu</th>
                         <th>Lịch Học</th>
-                        <th>Xóa</th>
+                        <th>Chọn lớp</th>
                         <?php
                         // sử dụng vòng lặp for để hiển thị ra các thông tin của result_xem_thong_tin_diem_cua_lop
-                        for($i=1;$result_lop_chua_co_hoc_sinh->num_rows>=$i;$i++){
+                        for($i=1;$result_select_lop_all->num_rows>=$i;$i++){
                             //Lấy một hàng dữ liệu dưới dạng mảng liên assoc
-                            $row = $result_lop_chua_co_hoc_sinh->fetch_assoc();
+                            $row = $result_select_lop_all->fetch_assoc();
                             echo "<tr>";
                                 echo "<td>" . $i . "</td>";
                                 echo "<td>" . $row['ten_lop'] . "</td>";
                                 echo "<td>" . $row['si_so_toi_da'] . "</td>";
                                 echo "<td>" . $row['ngay_bat_dau'] . "</td>";
                                 echo "<td>" . $row['lich_hoc'] . "</td>";
-                                echo "<td><input class='form-check-input' type='checkbox' name='xoa_lop[]' id='flexCheckDefault' value= $row[ma_lop]></td>"; 
+                                echo "<td><a href='sua_lop_form_dien_tt.php?ma_lop=$row[ma_lop]' class='btn btn-primary'>Sửa</a></td>"; 
                             echo "</tr>";
                             }
                         ?>
                     </tr>
-                </table>
-                <button type="submit" style="width: 100px;" name="delete" class="btn btn-danger">Xóa</button>
+            </table>
+
             </form>
 
         </div>
@@ -134,7 +134,13 @@
     </content>
     <!-- Kết thúc content của trang -->
     <!-- footer -->
-    <section class="">
+
+    <!-- Kết thúc footer -->
+    <!-- Đóng if isset từ dòng 18 -->
+    <?php 
+        }
+    ?>
+       <section class="">
         <!-- Footer -->
         <footer class="bg-body-tertiary">
             <!-- Grid container -->
@@ -171,11 +177,6 @@
         </footer>
         <!-- Footer -->
     </section>
-    <!-- Kết thúc footer -->
-    <!-- Đóng if isset từ dòng 18 -->
-    <?php 
-        }
-    ?>
     <!-- Link đến js của bootstrap -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">

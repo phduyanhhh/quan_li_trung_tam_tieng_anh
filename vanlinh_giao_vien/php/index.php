@@ -99,39 +99,47 @@
     </content>
     <!-- Kết thúc content của trang -->
     <!-- footer -->
-    <footer class="bg-body-tertiary text-center text-lg-start">
-        <!-- Grid container -->
-        <div class="container p-4">
-            <!--Grid row-->
-            <div class="row">
-                <!--Grid column-->
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Maxim</h5>
+    <section class="">
+        <!-- Footer -->
+        <footer class="bg-body-tertiary">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Maxim</h5>
 
-                    <p>
-                    Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles begins with a single step.
-                    </p>
+                        <p>
+                            Do the difficult things while they are easy and do the great things while they are small. A
+                            journey of a thousand miles begins with a single step – Lão Tử
+                            (Làm những điều khó khăn khi chúng còn dễ dàng và làm những điều tuyệt vời từ những điều nhỏ
+                            nhoi. Một cuộc hành trình ngàn dặm luôn bắt đầu từ những bước đơn lẻ.
+                        </p>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Maxim</h5>
+
+                        <p>
+                            It doesn’t matter how slowly you go as long as you do not stop – Nho giáo
+                            (Không quan trọng bạn đi chậm thế nào miễn là bạn không dừng lại.)
+                        </p>
+                    </div>
+                    <!--Grid column-->
                 </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                    <h5 class="text-uppercase">Maxim</h5>
-
-                    <p>
-                    It’s those who are earlier than the others, those who put in more effort, who can enjoy the feeling of success
-                    </p>
-                </div>
-                <!--Grid column-->
+                <!--Grid row-->
             </div>
-            <!--Grid row-->
-        </div>
-        <!-- Grid container -->
-    </footer>
+            <!-- Grid container -->
+        </footer>
+        <!-- Footer -->
+    </section>
     <!-- Kết thúc footer -->
     <!-- Đóng if isset từ dòng 18 -->
     <?php 
-       
+
     ?>
     <!-- Link đến js của bootstrap -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -142,6 +150,9 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
 </body>
 

@@ -1,10 +1,18 @@
 <head>
+<<<<<<< HEAD:DuyAnhAdmin/templates/jquery_ajax/getFindStudent.php
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <!-- <script src="js/delete_student.js"></script> -->
 <link rel="stylesheet" type='text/css' href="../../css/style-homeadmin.css">
 <script src="../../js/find.js"></script>
+=======
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- <script src="js/delete_student.js"></script> -->
+    <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
+    <script src="js/find.js"></script>
+>>>>>>> bae96b1e4a764cdfe5a750a814261657a948ad95:DuyAnhAdmin/getFindStudent.php
 </head>
-<body>    
+
+<body>
     <?php
     require '../../connect.php'; 
     $nameStudent = $_GET['name'];
@@ -12,6 +20,8 @@
     $resultFindStudent = $conn->query($sqlFindStudent);
     ?>
     <table class="table table-striped table-delete-student">
+
+      
           <tr>
               <th>#</th>
               <th>Tên học sinh</th>
@@ -34,15 +44,16 @@
             <td><?php echo $rowFindStudent['so_dien_thoai']; ?></td>
             <td>
                 <div class="form-check">
-                    <input class="form-check-input checkbox-student" type="checkbox" name="delete_student[]" value=<?php echo $rowFindStudent['ma_tai_khoan']; ?> id="checkbox-student">
+                    <input class="form-check-input checkbox-student" type="checkbox" name="delete_student[]"
+                        value=<?php echo $rowFindStudent['ma_tai_khoan']; ?> id="checkbox-student">
                 </div>
             </td>
         </tr>
-    <?php
+        <?php
     }
     ?>
     </table>
     <script>
-        
+
     </script>
 </body>
