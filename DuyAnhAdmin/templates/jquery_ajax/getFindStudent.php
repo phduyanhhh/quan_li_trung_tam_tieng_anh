@@ -1,15 +1,14 @@
 <head>
-<<<<<<< HEAD:DuyAnhAdmin/templates/jquery_ajax/getFindStudent.php
+<!-- <<<<<<< HEAD:DuyAnhAdmin/templates/jquery_ajax/getFindStudent.php
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<!-- <script src="js/delete_student.js"></script> -->
-<link rel="stylesheet" type='text/css' href="../../css/style-homeadmin.css">
+<script src="js/delete_student.js"></script> -->
+<!-- <link rel="stylesheet" type='text/css' href="../../css/style-homeadmin.css">
 <script src="../../js/find.js"></script>
 =======
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- <script src="js/delete_student.js"></script> -->
+    <script src="js/delete_student.js"></script>
     <link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
-    <script src="js/find.js"></script>
->>>>>>> bae96b1e4a764cdfe5a750a814261657a948ad95:DuyAnhAdmin/getFindStudent.php
+    <script src="js/find.js"></script> -->
 </head>
 
 <body>
