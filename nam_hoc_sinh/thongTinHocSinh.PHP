@@ -27,12 +27,6 @@
     <li class="nav-item active">
       <a class="nav-link" href="themThongTinHocSinh.PHP">Thêm thông tin học sinh</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Disabled</a>
-    </li>
   </ul>
 </nav>
 

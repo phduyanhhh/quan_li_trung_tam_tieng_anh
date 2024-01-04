@@ -14,17 +14,17 @@
     ?>
     <table class="table table-striped table-delete-student">
 
-
-        <tr>
-            <th>#</th>
-            <th>Tên học sinh</th>
-            <th>Lớp</th>
-            <th>Điểm đầu vào</th>
-            <th>Email</th>
-            <th>Số điện thoại</th>
-            <th>Xóa</th>
-        </tr>
-        <?php
+      
+          <tr>
+              <th>#</th>
+              <th>Tên học sinh</th>
+              <th>Lớp</th>
+              <th>Điểm đầu vào</th>
+              <th>Email</th>
+              <th>Số điện thoại</th>
+              <th>Xóa</th>
+          </tr>
+    <?php
     for($i=1;$resultFindStudent->num_rows>=$i;$i++){
         $rowFindStudent = $resultFindStudent->fetch_assoc();
         ?>
