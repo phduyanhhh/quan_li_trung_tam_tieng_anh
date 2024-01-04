@@ -8,4 +8,8 @@ if ($_POST["xoa_lop"]){
         header('location: http://localhost/Web_cuoi_ki/quan_li_trung_tam_tieng_anh/vanlinh_giao_vien/php/thong_tin_lop.php');
     }
 }
+else{
+    header('location: http://localhost/Web_cuoi_ki/quan_li_trung_tam_tieng_anh/vanlinh_giao_vien/php/thong_tin_lop.php');
+}
+
 ?>

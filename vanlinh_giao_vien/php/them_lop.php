@@ -11,7 +11,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Trang Chủ</title>
+    <title>Thêm lớp</title>
 </head>
 
 <body>
@@ -37,6 +37,7 @@
 
     ?>
     <!-- Header-nav của trang web -->
+    <!-- Header-nav của trang web -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-menu-top">
         <div class="container-fluid nav-menu">
             <a class="navbar-brand" href="index.php"><img src="../../image/img-british-council.jpg"
@@ -51,7 +52,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style='color: white'>
-                            Lớp học
+                            Quản lý lớp đang giảng dạy
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <?php
@@ -64,8 +65,8 @@
                     ?>
                         </div>
                     </li>
-                    <a href="index.php" class="nav-link" id="text">Trang chủ</a>
-                    <a href="index.php" class="nav-link" id="text">Trang chủ</a>
+                    <a href="thong_tin_lop.php" class="nav-link" id="text">Lớp</a>
+
                 </div>
             </div>
             <div class="dropdown mt-3" id="box-avt">
@@ -89,13 +90,13 @@
             <div>
                 <h2 class="accordion-header" id="header-menu-left"><b>Chức Năng </b></h2>
                 <a type="button" style="margin-bottom: 15px;margin-left: 10px" class="btn btn-outline-secondary "
-                    href="cap_nhat_diem.php?ma_lop=<?php echo $ma_lop; ?>">Thêm Lớp</a>
+                    href="thong_tin_lop.php"> Thông tin Lớp </a>
                 <a type="button" style="margin-bottom: 15px;margin-left: 10px" class="btn btn-outline-secondary "
-                    href="cap_nhat_diem.php?ma_lop=<?php echo $ma_lop; ?>">Xóa Lớp</a>
+                    href="them_lop.php">Thêm Lớp Học</a>
                 <a type="button" style="margin-bottom: 15px;margin-left: 10px" class="btn btn-outline-secondary "
-                    href="cap_nhat_diem.php?ma_lop=<?php echo $ma_lop; ?>">Tìm Kiếm</a>
+                    href="xoa_lop.php">Xóa Lớp Học</a>
                 <a type="button" style="margin-bottom: 15px;margin-left: 10px" class="btn btn-outline-secondary "
-                    href="cap_nhat_diem.php?ma_lop=<?php echo $ma_lop; ?>">Sửa</a>
+                    href="sua_lop.php?">Sửa Lớp Học</a>
             </div>
         </div>
         <div class='cap_nhat'>
@@ -111,7 +112,7 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="inputGroupSelect01">Khóa học</label>
                         </div>
-                        <select class="custom-select" id="inputGroupSelect01" name ='khoa_hoc'>
+                        <select class="custom-select" id="inputGroupSelect01" name='khoa_hoc'>
                             <?php
                              for($i=1;$result_select_khoa_hoc_all->num_rows>=$i;$i++){
                                 //Lấy một hàng dữ liệu dưới dạng mảng liên assoc
@@ -125,7 +126,7 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="inputGroupSelect01">Giáo viên Giảng Dạy</label>
                         </div>
-                        <select class="custom-select" id="inputGroupSelect01" name ='giao_vien'>
+                        <select class="custom-select" id="inputGroupSelect01" name='giao_vien'>
                             <?php
                              for($i=1;$result_select_giao_vien_all->num_rows>=$i;$i++){
                                 //Lấy một hàng dữ liệu dưới dạng mảng liên assoc
@@ -139,9 +140,8 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Tên Lớp</span>
                         </div>
-                        <input type="text" name="ten_lop" style="width:500px"
-                            class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"
-                            required>
+                        <input type="text" name="ten_lop" style="width:500px" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" required>
                     </div>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -163,7 +163,7 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="inputGroupSelect01">Khóa học</label>
                         </div>
-                        <select class="custom-select" id="inputGroupSelect01" name ='lich_hoc'>
+                        <select class="custom-select" id="inputGroupSelect01" name='lich_hoc'>
                             <option value="246">Thứ: 2 - 4 - 6</option>
                             <option value="357">Thứ: 3 - 5 - 7</option>
                             <option value="258">Thứ: 2 - 5 - CN</option>
@@ -191,6 +191,43 @@
     <?php 
         }
     ?>
+       <section class="">
+        <!-- Footer -->
+        <footer class="bg-body-tertiary">
+            <!-- Grid container -->
+            <div class="container p-4">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Maxim</h5>
+
+                        <p>
+                            Do the difficult things while they are easy and do the great things while they are small. A
+                            journey of a thousand miles begins with a single step – Lão Tử
+                            (Làm những điều khó khăn khi chúng còn dễ dàng và làm những điều tuyệt vời từ những điều nhỏ
+                            nhoi. Một cuộc hành trình ngàn dặm luôn bắt đầu từ những bước đơn lẻ.
+                        </p>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Maxim</h5>
+
+                        <p>
+                            It doesn’t matter how slowly you go as long as you do not stop – Nho giáo
+                            (Không quan trọng bạn đi chậm thế nào miễn là bạn không dừng lại.)
+                        </p>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+            <!-- Grid container -->
+        </footer>
+        <!-- Footer -->
+    </section>
     <!-- Link đến js của bootstrap -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">

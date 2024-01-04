@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- link đến css của giáo viên -->
-    <link rel="stylesheet" href="../css_giao_vien/chi_tiet_lop.css">
+    <link rel="stylesheet" href="../css_giao_vien/nhap_sua.css">
     <!-- link đến css của bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Xóa lớp</title>
+    <title>Thêm học sinh</title>
 </head>
 
 <body>
@@ -19,18 +19,23 @@
     session_start(); // khởi động session để lấy thông tin từ session
         if(isset($_SESSION['ten'])){
             // kết nối với database
-            require 'connect.php'; 
-            // lấy về mã giáo viên, mã lớp và lưu vào 1 biến
+            require 'connect.php';
+            // lấy về mã giáo viên, mã lớp, mã học sinh và lưu vào 1 biến
             $ma_giao_vien = $_SESSION['ma_giao_vien']; 
+            $ma_lop = $_GET['ma_lop'];
             // SQL select lớp mà giáo viên đang dạy 
             $sql_select_lop = "SELECT * FROM lop WHERE ma_giao_vien = $ma_giao_vien ";
             $result_select_lop = $conn->query($sql_select_lop);
-            // SQL lay thong tin lop chua co hoc sinh 
-            $sql_select_lop_chua_co_hoc_sinh = "SELECT diem_cua_lop.ma_hoc_sinh ,lop.* FROM lop LEFT JOIN diem_cua_lop ON lop.ma_lop = diem_cua_lop.ma_lop
-            WHERE diem_cua_lop.ma_lop IS NULL;";
-            $result_lop_chua_co_hoc_sinh = $conn->query($sql_select_lop_chua_co_hoc_sinh);
-
-            
+            // SQL lấy ra điều kiện của lớp 
+            $sql_dieu_kien_vao_lop= "SELECT khoa_hoc.dieu_kien, lop.* FROM lop 
+            INNER JOIN khoa_hoc ON khoa_hoc.ma_khoa_hoc = lop.ma_khoa_hoc WHERE ma_lop = $ma_lop " ;
+            $result_dieu_kien_vao_lop = $conn->query($sql_dieu_kien_vao_lop)->fetch_assoc();
+            $dieu_kien_vao_lop = $result_dieu_kien_vao_lop['dieu_kien'];
+            // SQL lấy ra học sinh đủ điều kiện vào lớp
+            $sql_hoc_sinh_du_dieu_kien = "SELECT hoc_sinh.*, diem_cua_lop.ma_lop FROM `hoc_sinh` 
+            LEFT JOIN diem_cua_lop ON hoc_sinh.ma_hoc_sinh = diem_cua_lop.ma_hoc_sinh
+             WHERE diem_cua_lop.ma_lop IS NULL AND diem_dau_vao >= $dieu_kien_vao_lop;";
+            $result_hoc_sinh_du_dieu_kien = $conn->query($sql_hoc_sinh_du_dieu_kien);
     ?>
     <!-- Header-nav của trang web -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-menu-top">
@@ -82,59 +87,55 @@
     <!-- Content của trang -->
     <content>
         <div class="item menu-left">
-        <div>
+            <div>
                 <h2 class="accordion-header" id="header-menu-left"><b>Chức Năng </b></h2>
                 <a type="button" style="margin-bottom: 15px;margin-left: 10px" class="btn btn-outline-secondary "
-                    href="thong_tin_lop.php"> Thông tin Lớp </a>
+                    href="them_hoc_sinh.php?ma_lop=<?php echo $ma_lop; ?>">Thêm học sinh</a>
                 <a type="button" style="margin-bottom: 15px;margin-left: 10px" class="btn btn-outline-secondary "
-                    href="them_lop.php">Thêm Lớp Học</a>
-                <a type="button" style="margin-bottom: 15px;margin-left: 10px" class="btn btn-outline-secondary "
-                    href="xoa_lop.php">Xóa Lớp Học</a>
-                <a type="button" style="margin-bottom: 15px;margin-left: 10px" class="btn btn-outline-secondary "
-                    href="sua_lop.php?">Sửa Lớp Học</a>
+                    href="xoa_hoc_sinh.php?ma_lop=<?php echo $ma_lop; ?>">Xóa học sinh</a>
             </div>
         </div>
+        <div class='cap_nhat'>
+            <div id='cap_nhat'></div>
         </div>
         <div class='item content' id='content'>
             <div class="header-content-info-class">
-                <h3>Thông tin lớp học</h3>
+                <h3>Thêm Học sinh</h3>
             </div>
-                <table class="table table-striped">
-
-                    <form action="xoa_lop_be.php" method="post" class='box-information'>
-                    <tr>
-                        <th>#</th>
-                        <th>Tên Lớp</th>
-                        <th>Sĩ số tối đa</th>
-                        <th>Ngày Bắt Đầu</th>
-                        <th>Lịch Học</th>
-                        <th>Xóa</th>
-                        <?php
-                        // sử dụng vòng lặp for để hiển thị ra các thông tin của result_xem_thong_tin_diem_cua_lop
-                        for($i=1;$result_lop_chua_co_hoc_sinh->num_rows>=$i;$i++){
-                            //Lấy một hàng dữ liệu dưới dạng mảng liên assoc
-                            $row = $result_lop_chua_co_hoc_sinh->fetch_assoc();
-                            echo "<tr>";
-                                echo "<td>" . $i . "</td>";
-                                echo "<td>" . $row['ten_lop'] . "</td>";
-                                echo "<td>" . $row['si_so_toi_da'] . "</td>";
-                                echo "<td>" . $row['ngay_bat_dau'] . "</td>";
-                                echo "<td>" . $row['lich_hoc'] . "</td>";
-                                echo "<td><input class='form-check-input' type='checkbox' name='xoa_lop[]' id='flexCheckDefault' value= $row[ma_lop]></td>"; 
-                            echo "</tr>";
+            <div class='box-information'>
+                <form action="them_hoc_sinh_be.php" method="get" class="form_input">
+                    <input type="hidden" name="ma_lop" value="<?php echo $ma_lop ?>">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Học sinh </label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect01" name='ma_hoc_sinh'>
+                            <?php
+                             for($i=1;$result_hoc_sinh_du_dieu_kien->num_rows>=$i;$i++){
+                                //Lấy một hàng dữ liệu dưới dạng mảng liên assoc
+                                $row = $result_hoc_sinh_du_dieu_kien->fetch_assoc();
+                                echo "<option value='$row[ma_hoc_sinh]'>$row[ho] $row[ten] - $row[diem_dau_vao]</option>";
                             }
-                        ?>
-                    </tr>
-                </table>
-                <button type="submit" style="width: 100px;" name="delete" class="btn btn-danger">Xóa</button>
-            </form>
+                            ?>
+                        </select>
+                    </div>
+                    <a href="chi_tiet_lop.php?ma_lop=<?php echo $ma_lop ?>" class="btn btn-danger">Hủy</a>
+                    <button type="submit" class="btn btn-success">Thực hiện</button>
+                </form>
 
+            </div>
         </div>
         </div>
     </content>
     <!-- Kết thúc content của trang -->
     <!-- footer -->
-    <section class="">
+
+    <!-- Kết thúc footer -->
+    <!-- Đóng if isset từ dòng 18 -->
+    <?php 
+        }
+    ?>
+       <section class="">
         <!-- Footer -->
         <footer class="bg-body-tertiary">
             <!-- Grid container -->
@@ -171,11 +172,6 @@
         </footer>
         <!-- Footer -->
     </section>
-    <!-- Kết thúc footer -->
-    <!-- Đóng if isset từ dòng 18 -->
-    <?php 
-        }
-    ?>
     <!-- Link đến js của bootstrap -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">

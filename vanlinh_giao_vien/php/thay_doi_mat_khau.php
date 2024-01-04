@@ -4,13 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cập nhật thông tin cá nhân</title>
+    <title>Thay đổi mật khẩu</title>
     <link rel="stylesheet" href="../css_giao_vien/cap_nhat_thong_tin.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
+
 </head>
 
 <body>
@@ -18,7 +16,7 @@
     session_start();
     if(isset($_SESSION['ten'])){
     require 'connect.php';
-        // SQL select lớp mà giáo viên đang dạy 
+    // SQL select lớp mà giáo viên đang dạy 
     $ma_giao_vien =  $_SESSION['ma_giao_vien'];
     $sql_select_lop = "SELECT * FROM lop WHERE ma_giao_vien = $ma_giao_vien ";
     $result_select_lop = $conn->query($sql_select_lop);
@@ -84,44 +82,36 @@
             </div>
         </div>
         <div class='item content' id='content'>
-            <h2>Cập nhật thông tin cá nhân</h2>
+            <h2>Thay Đổi Mật Khẩu</h2>
             <div class='box-information'>
                 <div class='item-box-information'>
-                    <form action="cap_nhat_thong_tin.be.php" method="post">
+                    <form action="" method="post">
                         <input type="hidden" value="<?php echo $ma_giao_vien ?>" name="ma_giao_vien">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Tên</span>
+                                <span class="input-group-text" id="inputGroup-sizing-default">Mật Khẩu Cũ</span>
                             </div>
                             <input type="text" class="form-control" aria-label="Default"
-                                value="<?php echo $resultSqlSelectTeacher['ten'] ?>"
-                                aria-describedby="inputGroup-sizing-default" name="ten">
+                                aria-describedby="inputGroup-sizing-default" name="mat_khau_cu"
+                                placeholder="Nhập mật khẩu cũ " required>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Họ</span>
+                                <span class="input-group-text" id="inputGroup-sizing-default">Mật Khẩu Mới</span>
                             </div>
-                            <input type="text" class="form-control" aria-label="Default"
-                                value="<?php echo $resultSqlSelectTeacher['ho'] ?>"
-                                aria-describedby="inputGroup-sizing-default" name="ho">
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Nhập email của bạn"
-                                value="<?php echo $resultSqlSelectTeacher['email'] ?>" aria-label="Nhập email của bạn"
-                                aria-describedby="basic-addon2" name="email">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="inputGroup-sizing-lg">@gmail.com</span>
-                            </div>
+                            <input type="text" class="form-control" aria-label="Default" placeholder="Nhập mật khẩu mới"
+                                aria-describedby="inputGroup-sizing-default" name="mat_khau_moi" required>
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Số điện thoại</span>
+                                <span class="input-group-text" id="inputGroup-sizing-default">Nhập Lại Mật Khẩu
+                                    Mới</span>
                             </div>
                             <input type="text" class="form-control" aria-label="Default"
-                                value="<?php echo $resultSqlSelectTeacher['so_dien_thoai'] ?>"
-                                aria-describedby="inputGroup-sizing-default" name="so_dien_thoai">
+                                placeholder="Nhập lại mật khẩu mới" aria-describedby="inputGroup-sizing-default"
+                                name="nhap_lai_mat_khau_moi" required>
                         </div>
-                        <button class="btn btn-primary">Cập nhật</button>
+                        <button class="btn btn-primary">Thay đổi</button>
                     </form>
                 </div>
             </div>
@@ -130,8 +120,8 @@
     }
 ?>
 
- <!-- Link đến js của bootstrap -->
- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        <!-- Link đến js của bootstrap -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
         </script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
