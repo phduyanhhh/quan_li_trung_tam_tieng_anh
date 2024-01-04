@@ -6,19 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nhập sửa điểm</title>
     <script>
-    function tim_kiem_diem_cua_lop() {
+function tim_kiem_diem_cua_lop() {
+        //gửi yêu cầu HTTP không đồng bộ đến máy chủ và nhận phản hồi.
         var xmlhttp = new XMLHttpRequest();
+        // thiết lập một hàm xử lý sự kiện để kiểm tra trạng thái của yêu cầu. Khi trạng thái thay đổi, hàm này sẽ được gọi.
         xmlhttp.onreadystatechange = function() {
+            // kiểm tra xem yêu cầu có thành thông hay không
             if (this.readyState == 4 && this.status == 200) {
+                //cập nhật nội dung với id là thông tin điểm của lớp bằng dữ liệu phản hồi từ server this.responseText.
                 document.querySelector('#thong_tin_diem_cua_lop').innerHTML = this.responseText;
             }
         };
+        // lưu 2 giá trị lấy từ thẻ có id là 2 id trên và thực hiện câu lệnh gửi
         const value_ma_lop = document.querySelector("#ma_lop").value;
         const value_ho = document.querySelector("#tim_kiem_diem_cua_lop").value;
-        xmlhttp.open("GET", `nhap_sua_diem_cua_lop.php?ho=` + value_ho + `&ma_lop=` + value_ma_lop , true);
+        // mở trang nhap_sua_diem_cua_lop với 2 giá trị gửi đi là ho và ma_lop
+        xmlhttp.open("GET", `nhap_sua_diem_cua_lop.php?ho=` + value_ho + `&ma_lop=` + value_ma_lop, true);
+        // gửi yêu cầu tới máy chủ
         xmlhttp.send();
     }
+    // Gắn một sự kiện DOMContentLoaded để đảm bảo rằng các sự kiện chỉ được đính kèm khi toàn bộ DOM đã được tải xong.
     document.addEventListener("DOMContentLoaded", function() {
+        // gắn sự kiện onkeyup để mỗi khi nhập vào rồi nhấc tay khỏi phím sẽ thực hiện hàm tim_kiem_diem_cua_lop
         document.getElementById('tim_kiem_diem_cua_lop').onkeyup = tim_kiem_diem_cua_lop;
     });
     </script>

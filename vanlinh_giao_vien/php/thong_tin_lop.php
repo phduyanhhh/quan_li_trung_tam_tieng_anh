@@ -13,19 +13,28 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Thông tin lớp</title>
     <script>
-    function tim_kiem_hoc_sinh() {
+    function tim_kiem_lop() {
+        //gửi yêu cầu HTTP không đồng bộ đến máy chủ và nhận phản hồi. 
         var xmlhttp = new XMLHttpRequest();
+        // thiết lập một hàm xử lý sự kiện để kiểm tra trạng thái của yêu cầu. Khi trạng thái thay đổi, hàm này sẽ được gọi.
         xmlhttp.onreadystatechange = function() {
+            // kiểm tra xem yêu cầu có thành thông hay không
             if (this.readyState == 4 && this.status == 200) {
+                //cập nhật nội dung với id là thong_tin_lop bằng dữ liệu phản hồi từ server this.responseText.
                 document.querySelector('#thong_tin_lop').innerHTML = this.responseText;
             }
         };
+        // lưu giá trị lấy từ thẻ có id là tim_kiem_lop và thực hiện câu lệnh gửi
         const value_ten_lop = document.querySelector("#tim_kiem_lop").value;
+        // mở trang tim_kiem_lop với giá trị gửi đi là ten_lop
         xmlhttp.open("GET", `tim_kiem_lop.php?ten_lop=` + value_ten_lop, true);
+        // gửi yêu cầu tới máy chủ
         xmlhttp.send();
     }
+    // Gắn một sự kiện DOMContentLoaded để đảm bảo rằng các sự kiện chỉ được đính kèm khi toàn bộ DOM đã được tải xong.
     document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById('tim_kiem_lop').onkeyup = tim_kiem_hoc_sinh;
+        // gắn sự kiện onkeyup để mỗi khi nhập vào rồi nhấc tay khỏi phím sẽ thực hiện hàm tim_kiem_hoc_sinh
+        document.getElementById('tim_kiem_lop').onkeyup = tim_kiem_lop;
     });
     </script>
 </head>
