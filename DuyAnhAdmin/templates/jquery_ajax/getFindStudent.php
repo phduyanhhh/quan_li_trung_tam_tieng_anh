@@ -1,12 +1,12 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <!-- <script src="js/delete_student.js"></script> -->
-<link rel="stylesheet" type='text/css' href="../css/style-home-admin.css">
-<script src="js/find.js"></script>
+<link rel="stylesheet" type='text/css' href="../../css/style-homeadmin.css">
+<script src="../../js/find.js"></script>
 </head>
 <body>    
     <?php
-    require 'connect.php'; 
+    require '../../connect.php'; 
     $nameStudent = $_GET['name'];
     $sqlFindStudent = "SELECT * FROM hoc_sinh INNER JOIN tai_khoan ON hoc_sinh.ma_tai_khoan = tai_khoan.ma_tai_khoan INNER JOIN diem_cua_lop ON hoc_sinh.ma_hoc_sinh = diem_cua_lop.ma_hoc_sinh INNER JOIN lop ON diem_cua_lop.ma_lop = lop.ma_lop WHERE hoc_sinh.ten LIKE '$nameStudent%'";
     $resultFindStudent = $conn->query($sqlFindStudent);

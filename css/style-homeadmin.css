@@ -1,5 +1,6 @@
 body {
     background-color: rgb(238, 238, 238);
+    height: 100px;
 }
 #text {
     color: #fff;
@@ -124,4 +125,68 @@ content {
 }
 .table-course {
     width: 80%;
+}
+.table-delete-course tr td{
+    text-align: center;
+}
+.item-box-information-course {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.table-course {
+    text-align: center;
+    margin-left: 90px;
+}
+.table-update-teacher {
+    width: 100%;
+    text-align: center;
+}
+.update-teacher {
+    overflow-y: scroll;
+    height: 500px;
+}
+
+.table-delete-student {
+    text-align: center;
+}
+.table-delete-student tr td th {
+    text-align: center;
+}
+.delete-student {
+  overflow-y: scroll;
+  height: 500px;
+  width: 100%;
+}
+#search-student {
+  width: 50%;
+}
+/* LIST*/
+.list-student {
+    width: 1200px;
+    background-color: #fff;
+}
+.table-list {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.list-teacher {
+    width: 1200px;
+    background-color: #fff;
+}
+
+.list-course {
+    width: 1200px;
+    background-color: #fff;
+}
+.list-header {
+    padding: 15px;
+    text-align: center;
+}
+.table-list-course {
+    width: 80%;
+    margin-left: 150px;
+    padding-bottom: 20px;
 }

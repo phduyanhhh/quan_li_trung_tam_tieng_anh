@@ -1,5 +1,5 @@
 <?php
-        require "connect.php";
+        require "../../connect.php";
         $sqlCourse = "SELECT * FROM khoa_hoc";
         $resultCourse = $conn->query($sqlCourse);
         // ---------Số học sinh đăng kí khóa học----------

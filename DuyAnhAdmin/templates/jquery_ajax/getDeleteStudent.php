@@ -1,6 +1,6 @@
 
 <?php
-    require "connect.php";
+    require "../../connect.php";
     $selectStudent = $_GET['select'];
     echo $selectStudent;
     $listSelectStudent = explode(",", $selectStudent);

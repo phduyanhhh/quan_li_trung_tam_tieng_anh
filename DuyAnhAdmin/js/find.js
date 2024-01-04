@@ -7,7 +7,7 @@ function delete_student(){
       }
   };
   const value_name_student = document.querySelector("#search-student").value;
-  xmlhttp.open("GET", `getFindStudent.php?name=`+value_name_student, true);
+  xmlhttp.open("GET", `../jquery_ajax/getFindStudent.php?name=`+value_name_student, true);
   xmlhttp.send();
 }
 
@@ -28,7 +28,7 @@ var xmlhttp = new XMLHttpRequest();
         }
   };
   console.log(selectedCheckboxes);
-  xmlhttp.open("GET", `getDeleteStudent.php?select=`+selectedCheckboxes, true);
+  xmlhttp.open("GET", `../jquery_ajax/getDeleteStudent.php?select=`+selectedCheckboxes, true);
   xmlhttp.send();
 }
 // document.getElementById('search-student'). addEventListener('keyup', delete_student)

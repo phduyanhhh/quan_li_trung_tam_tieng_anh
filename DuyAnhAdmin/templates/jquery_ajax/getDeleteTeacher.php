@@ -1,6 +1,6 @@
 
 <?php
-    require "connect.php";
+    require "../../connect.php";
     $selectTeacher = $_GET['select'];
     $listSelectTeacher = explode(",", $selectTeacher);
     $numberListSelectTeacher = count($listSelectTeacher);

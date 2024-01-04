@@ -1,12 +1,12 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <!-- <script src="js/delete_student.js"></script> -->
-<link rel="stylesheet" type='text/css' href="../css/style-homeadmin.css">
-<script src="js/find_teacher.js"></script>
+<link rel="stylesheet" type='text/css' href="../../../css/style-homeadmin.css">
+<script src="../../js/find_teacher.js"></script>
 </head>
 <body>    
     <?php
-    require 'connect.php'; 
+    require '../../connect.php'; 
     $nameTeacher = $_GET['name'];
     $sqlFindTeacher = "SELECT * FROM giao_vien INNER JOIN tai_khoan ON giao_vien.ma_tai_khoan = tai_khoan.ma_tai_khoan";
     $resultFindTeacher = $conn->query($sqlFindTeacher);

@@ -1,5 +1,5 @@
 <?php
-require "connect.php";
+require "../connect.php";
 $userName = $_POST['user_name'];
 $password = $_POST['password'];
 $firstName = $_POST['first_name'];
@@ -15,7 +15,7 @@ if($conn->query($sqlAddTaiKhoan)){
     $ma_tai_khoan = $rowMaTaiKhoan['ma_tai_khoan'];
     $sqlAddGiaoVien = "INSERT INTO `giao_vien`(`ma_tai_khoan`, `ten`, `ho`, `email`, `so_dien_thoai`, `trinh_do`) VALUES ('$ma_tai_khoan','$firstName','$lastName','$email','$phoneNumber','$level')";
     if($conn->query($sqlAddGiaoVien)){
-        header('location: homeAdmin.php');
+        header('location: ../homeAdmin.php');
     }
 }
 ?>
