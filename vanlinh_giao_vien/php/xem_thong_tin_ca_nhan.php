@@ -74,8 +74,6 @@
                                 href="xem_thong_tin_ca_nhan.php"><b>Thông tin cá nhân</b></a>
                             <a style="margin-bottom: 20px;margin-left: 20px;" class="btn btn-outline-primary"
                                 href="cap_nhat_thong_tin.php"><b>Cập nhật thông tin</b></a>
-                            <a style="margin-bottom: 20px;margin-left: 20px;" class="btn btn-outline-primary"
-                                href="thay_doi_mat_khau.php"><b>Thay đổi mật khẩu</b></a>
                             <a style="margin-bottom: 20px;margin-left: 40px;" class="btn btn-outline-danger"
                                 href="../../templates/loginMaster.html"><b>Đăng Xuất</b></a>
                         </div>
